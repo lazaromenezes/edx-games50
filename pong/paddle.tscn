@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://df5fn666sydi6"]
+
+[ext_resource type="Gradient" uid="uid://c1nkup7672n8u" path="res://assets/clear_gradient_texture.tres" id="1_sp3eu"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yxiei"]
+gradient = ExtResource("1_sp3eu")
+width = 5
+height = 20
+
+[node name="Paddle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_yxiei")

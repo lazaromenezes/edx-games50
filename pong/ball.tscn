@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c84fee763rnai"]
+
+[ext_resource type="Gradient" uid="uid://c1nkup7672n8u" path="res://assets/clear_gradient_texture.tres" id="1_3xwu2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ounw0"]
+gradient = ExtResource("1_3xwu2")
+width = 4
+height = 4
+
+[node name="Ball" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_ounw0")

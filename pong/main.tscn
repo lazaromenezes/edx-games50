@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c51vw6eadvn0j"]
+
+[ext_resource type="Texture2D" uid="uid://bd0f34fw6v280" path="res://assets/field.svg" id="1_ckf5f"]
+[ext_resource type="PackedScene" uid="uid://c84fee763rnai" path="res://ball.tscn" id="1_pcpd6"]
+[ext_resource type="PackedScene" uid="uid://df5fn666sydi6" path="res://paddle.tscn" id="2_0hffx"]
+
+[node name="Main" type="Node2D"]
+texture_filter = 1
+
+[node name="Court" type="Node2D" parent="."]
+position = Vector2(216, 121)
+
+[node name="Background" type="Sprite2D" parent="Court"]
+texture = ExtResource("1_ckf5f")
+
+[node name="Ball" parent="Court" instance=ExtResource("1_pcpd6")]
+
+[node name="Player1" parent="Court" instance=ExtResource("2_0hffx")]
+position = Vector2(-206, -101)
+
+[node name="Player2" parent="Court" instance=ExtResource("2_0hffx")]
+position = Vector2(206, 101)
