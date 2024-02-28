@@ -1,13 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c84fee763rnai"]
+[gd_scene load_steps=5 format=3 uid="uid://c84fee763rnai"]
 
 [ext_resource type="Gradient" uid="uid://c1nkup7672n8u" path="res://assets/clear_gradient_texture.tres" id="1_3xwu2"]
+[ext_resource type="Script" path="res://ball.gd" id="1_y6jyk"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ounw0"]
 gradient = ExtResource("1_3xwu2")
 width = 4
 height = 4
 
-[node name="Ball" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7b8j2"]
+size = Vector2(4, 4)
+
+[node name="Ball" type="RigidBody2D"]
+script = ExtResource("1_y6jyk")
+speed = 40
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_ounw0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7b8j2")
