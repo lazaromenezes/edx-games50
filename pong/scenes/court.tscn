@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dau0a8lyxv4mn"]
+[gd_scene load_steps=5 format=3 uid="uid://dau0a8lyxv4mn"]
 
 [ext_resource type="Texture2D" uid="uid://bd0f34fw6v280" path="res://assets/field.svg" id="1_kj7sd"]
+[ext_resource type="Script" path="res://scenes/court.gd" id="1_uafjn"]
+[ext_resource type="PackedScene" uid="uid://lngg1b5ibm2s" path="res://scenes/goal.tscn" id="2_7at0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkgjm"]
 size = Vector2(432, 2)
 
 [node name="Court" type="Node2D"]
+script = ExtResource("1_uafjn")
 metadata/_edit_vertical_guides_ = [0.0]
 metadata/_edit_horizontal_guides_ = [0.0]
 
@@ -14,12 +17,25 @@ texture = ExtResource("1_kj7sd")
 
 [node name="BorderUp" type="StaticBody2D" parent="."]
 position = Vector2(0, -120.5)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BorderUp"]
 shape = SubResource("RectangleShape2D_mkgjm")
 
 [node name="BorderDown" type="StaticBody2D" parent="."]
 position = Vector2(0, 120.5)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BorderDown"]
 shape = SubResource("RectangleShape2D_mkgjm")
+
+[node name="GoalLeft" parent="." instance=ExtResource("2_7at0o")]
+position = Vector2(-215, 0)
+
+[node name="GoalRight" parent="." instance=ExtResource("2_7at0o")]
+position = Vector2(215, 0)
+
+[connection signal="goal_scored" from="GoalLeft" to="." method="_on_goal_left_goal_scored"]
+[connection signal="goal_scored" from="GoalRight" to="." method="_on_goal_right_goal_scored"]

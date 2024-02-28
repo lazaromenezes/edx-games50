@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c51vw6eadvn0j"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_lgrsc"]
+[ext_resource type="PackedScene" uid="uid://c84fee763rnai" path="res://scenes/ball.tscn" id="1_pcpd6"]
+[ext_resource type="PackedScene" uid="uid://df5fn666sydi6" path="res://scenes/paddle.tscn" id="2_0hffx"]
+[ext_resource type="PackedScene" uid="uid://dau0a8lyxv4mn" path="res://scenes/court.tscn" id="3_3etq7"]
+
+[node name="Main" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_lgrsc")
+
+[node name="Court" parent="." node_paths=PackedStringArray("left_player", "right_player") instance=ExtResource("3_3etq7")]
+position = Vector2(216, 121.5)
+left_player = NodePath("Player1")
+right_player = NodePath("Player2")
+
+[node name="Ball" parent="Court" instance=ExtResource("1_pcpd6")]
+unique_name_in_owner = true
+initial_speed = 50
+
+[node name="Player1" parent="Court" instance=ExtResource("2_0hffx")]
+position = Vector2(-206, -101)
+speed = 80
+player = "player1"
+
+[node name="Player2" parent="Court" instance=ExtResource("2_0hffx")]
+position = Vector2(206, 101)
+speed = 80
+player = "player2"
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="player_scored" from="Court" to="." method="_on_court_player_scored"]

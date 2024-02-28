@@ -1,17 +1,23 @@
 extends RigidBody2D
+class_name Paddle
 
 @export var speed = 100
 @export var player = ""
 
-var movement = Vector2.ZERO
+var score = 0
+
+var motion = Vector2.ZERO
 
 func _process(_delta):
 	if Input.is_action_pressed(player + "_up"):
-		movement = Vector2.UP * speed
+		motion = Vector2.UP * speed
 	elif Input.is_action_pressed(player + "_down"):
-		movement = Vector2.DOWN * speed
+		motion = Vector2.DOWN * speed
 	else:
-		movement = Vector2.ZERO
+		motion = Vector2.ZERO
 
 func _physics_process(delta):
-	move_and_collide(movement * delta)
+	move_and_collide(motion * delta)
+
+func add_score():
+	score += 1
