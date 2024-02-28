@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://df5fn666sydi6"]
+[gd_scene load_steps=5 format=3 uid="uid://df5fn666sydi6"]
 
 [ext_resource type="Gradient" uid="uid://c1nkup7672n8u" path="res://assets/clear_gradient_texture.tres" id="1_sp3eu"]
+[ext_resource type="Script" path="res://paddle.gd" id="1_y07mx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrdhr"]
+size = Vector2(5, 20)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yxiei"]
 gradient = ExtResource("1_sp3eu")
 width = 5
 height = 20
 
-[node name="Paddle" type="Node2D"]
+[node name="Paddle" type="RigidBody2D"]
+script = ExtResource("1_y07mx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jrdhr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_yxiei")

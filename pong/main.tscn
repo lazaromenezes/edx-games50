@@ -17,6 +17,10 @@ texture = ExtResource("1_ckf5f")
 
 [node name="Player1" parent="Court" instance=ExtResource("2_0hffx")]
 position = Vector2(-206, -101)
+speed = 80
+player = "player1"
 
 [node name="Player2" parent="Court" instance=ExtResource("2_0hffx")]
 position = Vector2(206, 101)
+speed = 80
+player = "player2"
