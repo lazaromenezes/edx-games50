@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dau0a8lyxv4mn"]
+
+[ext_resource type="Texture2D" uid="uid://bd0f34fw6v280" path="res://assets/field.svg" id="1_kj7sd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkgjm"]
+size = Vector2(432, 2)
+
+[node name="Court" type="Node2D"]
+metadata/_edit_vertical_guides_ = [0.0]
+metadata/_edit_horizontal_guides_ = [0.0]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_kj7sd")
+
+[node name="BorderUp" type="StaticBody2D" parent="."]
+position = Vector2(0, -120.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderUp"]
+shape = SubResource("RectangleShape2D_mkgjm")
+
+[node name="BorderDown" type="StaticBody2D" parent="."]
+position = Vector2(0, 120.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderDown"]
+shape = SubResource("RectangleShape2D_mkgjm")

@@ -9,4 +9,7 @@ func _ready():
 	movement.y = randi_range(-50, 50)
 
 func _physics_process(delta):
-	move_and_collide(movement * delta)
+	var collision = move_and_collide(movement * delta)
+	
+	if collision:
+		movement = movement.bounce(collision.get_normal())
