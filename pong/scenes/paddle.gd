@@ -5,7 +5,6 @@ class_name Paddle
 @export var player = ""
 
 var score = 0
-
 var motion = Vector2.ZERO
 
 func _process(_delta):
@@ -21,3 +20,6 @@ func _physics_process(delta):
 
 func add_score():
 	score += 1
+	
+func reset_score():
+	score = 0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c51vw6eadvn0j"]
+[gd_scene load_steps=6 format=3 uid="uid://c51vw6eadvn0j"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lgrsc"]
 [ext_resource type="PackedScene" uid="uid://c84fee763rnai" path="res://scenes/ball.tscn" id="1_pcpd6"]
 [ext_resource type="PackedScene" uid="uid://df5fn666sydi6" path="res://scenes/paddle.tscn" id="2_0hffx"]
 [ext_resource type="PackedScene" uid="uid://dau0a8lyxv4mn" path="res://scenes/court.tscn" id="3_3etq7"]
+[ext_resource type="Theme" uid="uid://b3bo426t0f8ii" path="res://assets/main_theme.tres" id="5_sfrus"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
@@ -19,21 +20,57 @@ unique_name_in_owner = true
 initial_speed = 50
 
 [node name="Player1" parent="Court" instance=ExtResource("2_0hffx")]
+unique_name_in_owner = true
 position = Vector2(-206, -101)
 speed = 80
 player = "player1"
 
 [node name="Player2" parent="Court" instance=ExtResource("2_0hffx")]
+unique_name_in_owner = true
 position = Vector2(206, 101)
 speed = 80
 player = "player2"
 
-[node name="UI" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_sfrus")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -20.0
+offset_right = 41.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Player1Score" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="Player2Score" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
 
 [connection signal="player_scored" from="Court" to="." method="_on_court_player_scored"]
