@@ -23,3 +23,6 @@ func add_score():
 	
 func reset_score():
 	score = 0
+	
+func on_state_changed(state):
+	pass
