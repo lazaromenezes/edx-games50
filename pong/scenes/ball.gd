@@ -24,6 +24,7 @@ func _move_ball(delta):
 	
 		if collider is Paddle:
 			motion.x *= speed_increase
+			motion.y *= randf_range(1, 1.05)
 			$PaddleHit.play()
 		else:
 			$WallHit.play()
