@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var winning_score: int = 5
+
 const PRESS_ENTER: String = "Press [Enter]\nto start"
 const SERVING: String = "Press [Enter]\nto serve"
 
@@ -27,10 +29,12 @@ func _ready():
 	state_changed.connect(_on_state_changed)
 
 func _on_court_player_scored(player):
-	player.add_score()
-	_update_scores()
 	last_scored = player
-	allow_serve()
+	
+	player.add_score()
+	
+	_update_scores()
+	_check_victory(player)
 
 func _update_scores():
 	%Player1Score.text = str(%Player1.score)
@@ -39,15 +43,16 @@ func _update_scores():
 func _on_state_changed(state):
 	match(state):
 		State.STOPPED:
+			%Ball.reset()
 			%Player1.reset_score()
 			%Player2.reset_score()
-			%Ball.reset()
+			_update_scores()
 			%InfoLabel.text = PRESS_ENTER
 		State.SERVING:
 			%InfoLabel.text = SERVING
 			%Ball.reset()
 		State.PLAYING:
-			%InfoLabel.text = "\n"
+			%InfoLabel.text = " \n "
 			if last_scored == null:
 				%Ball.serve(0)
 			else:
@@ -62,3 +67,10 @@ func _input(event):
 		
 	if event.is_action_pressed("reset") and current_state != State.STOPPED:
 		stop()
+
+func _check_victory(player):
+	if player.score == winning_score:
+		await get_tree().create_timer(2).timeout
+		stop()
+	else:
+		allow_serve()
