@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c84fee763rnai"]
+[gd_scene load_steps=7 format=3 uid="uid://c84fee763rnai"]
 
 [ext_resource type="Gradient" uid="uid://c1nkup7672n8u" path="res://assets/clear_gradient_texture.tres" id="1_3xwu2"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_y6jyk"]
+[ext_resource type="AudioStream" uid="uid://bkxnikr6gi804" path="res://assets/paddle.wav" id="3_kkg5i"]
+[ext_resource type="AudioStream" uid="uid://dk6rlk6yrdu4s" path="res://assets/wall.wav" id="4_y7op0"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ounw0"]
 gradient = ExtResource("1_3xwu2")
@@ -11,7 +13,7 @@ height = 4
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7b8j2"]
 size = Vector2(4, 4)
 
-[node name="Ball" type="RigidBody2D"]
+[node name="Ball" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_y6jyk")
@@ -21,3 +23,11 @@ texture = SubResource("GradientTexture2D_ounw0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7b8j2")
+
+[node name="PaddleHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kkg5i")
+max_distance = 500.0
+
+[node name="WallHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_y7op0")
+max_distance = 500.0

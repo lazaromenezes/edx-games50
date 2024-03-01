@@ -70,7 +70,8 @@ func _input(event):
 
 func _check_victory(player):
 	if player.score == winning_score:
-		await get_tree().create_timer(2).timeout
+		$WinAudio.play()
+		await $WinAudio.finished
 		stop()
 	else:
 		allow_serve()

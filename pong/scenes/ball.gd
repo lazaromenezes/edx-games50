@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends CharacterBody2D
 class_name Ball
 
 @export var initial_speed = 100
@@ -21,9 +21,13 @@ func _move_ball(delta):
 		motion = motion.bounce(collision.get_normal())
 		
 		var collider = collision.get_collider()
-		
+	
 		if collider is Paddle:
 			motion.x *= speed_increase
+			$PaddleHit.play()
+		else:
+			$WallHit.play()
+			
 
 func reset():
 	position = Vector2.ZERO

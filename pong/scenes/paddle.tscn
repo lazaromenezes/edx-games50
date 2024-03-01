@@ -11,7 +11,7 @@ gradient = ExtResource("1_sp3eu")
 width = 5
 height = 20
 
-[node name="Paddle" type="RigidBody2D"]
+[node name="Paddle" type="StaticBody2D"]
 collision_mask = 2
 script = ExtResource("1_y07mx")
 

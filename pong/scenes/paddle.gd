@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 class_name Paddle
 
 @export var speed = 100
@@ -20,6 +20,7 @@ func _physics_process(delta):
 
 func add_score():
 	score += 1
-	
+
 func reset_score():
 	score = 0
+

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c51vw6eadvn0j"]
+[gd_scene load_steps=7 format=3 uid="uid://c51vw6eadvn0j"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lgrsc"]
 [ext_resource type="PackedScene" uid="uid://c84fee763rnai" path="res://scenes/ball.tscn" id="1_pcpd6"]
 [ext_resource type="PackedScene" uid="uid://df5fn666sydi6" path="res://scenes/paddle.tscn" id="2_0hffx"]
 [ext_resource type="PackedScene" uid="uid://dau0a8lyxv4mn" path="res://scenes/court.tscn" id="3_3etq7"]
 [ext_resource type="Theme" uid="uid://b3bo426t0f8ii" path="res://assets/main_theme.tres" id="5_sfrus"]
+[ext_resource type="AudioStream" uid="uid://04g2mnr4awiw" path="res://assets/win.wav" id="6_x5k5x"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
@@ -80,5 +81,9 @@ theme_override_font_sizes/font_size = 10
 text = "Press Enter
 to Start"
 horizontal_alignment = 1
+
+[node name="WinAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_x5k5x")
+max_distance = 500.0
 
 [connection signal="player_scored" from="Court" to="." method="_on_court_player_scored"]
