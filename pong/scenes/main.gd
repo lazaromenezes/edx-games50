@@ -70,6 +70,7 @@ func _input(event):
 
 func _check_victory(player):
 	if player.score == winning_score:
+		player.celebrate()
 		$WinAudio.play()
 		await $WinAudio.finished
 		stop()

@@ -22,5 +22,8 @@ func add_score():
 	score += 1
 
 func reset_score():
+	$Cellebration.emitting = false
 	score = 0
 
+func celebrate():
+	$Cellebration.emitting = true

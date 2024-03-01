@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://df5fn666sydi6"]
+[gd_scene load_steps=8 format=3 uid="uid://df5fn666sydi6"]
 
 [ext_resource type="Gradient" uid="uid://c1nkup7672n8u" path="res://assets/clear_gradient_texture.tres" id="1_sp3eu"]
 [ext_resource type="Script" path="res://scenes/paddle.gd" id="1_y07mx"]
@@ -11,6 +11,21 @@ gradient = ExtResource("1_sp3eu")
 width = 5
 height = 20
 
+[sub_resource type="Gradient" id="Gradient_c3d2j"]
+colors = PackedColorArray(0.654902, 0.168627, 0.129412, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s3r5t"]
+gradient = SubResource("Gradient_c3d2j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ksa6a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 10, 1)
+angle_min = -254.9
+angle_max = 19.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_s3r5t")
+
 [node name="Paddle" type="StaticBody2D"]
 collision_mask = 2
 script = ExtResource("1_y07mx")
@@ -20,3 +35,11 @@ shape = SubResource("RectangleShape2D_jrdhr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_yxiei")
+
+[node name="Cellebration" type="GPUParticles2D" parent="."]
+position = Vector2(0, -8)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_ksa6a")
+explosiveness = 0.5
+randomness = 0.5
