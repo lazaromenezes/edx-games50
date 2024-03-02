@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw1ckuvm63o4c"]
+
+[ext_resource type="PackedScene" uid="uid://bk3630luiwn1n" path="res://scenes/cave_background/cave_background.tscn" id="1_7entc"]
+[ext_resource type="PackedScene" uid="uid://bwrv8xbaij5wi" path="res://scenes/cave_front/cave_front.tscn" id="2_pybw8"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CaveBackground" parent="." instance=ExtResource("1_7entc")]
+
+[node name="CaveFront" parent="." instance=ExtResource("2_pybw8")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwrv8xbaij5wi"]
+
+[ext_resource type="Script" path="res://scenes/cave_front/cave_front.gd" id="1_7u03y"]
+[ext_resource type="Texture2D" uid="uid://k68fwseyshsn" path="res://assets/cave/cave_front.png" id="2_gh3hs"]
+
+[node name="CaveFront" type="Node2D"]
+script = ExtResource("1_7u03y")
+
+[node name="CaveSprite" type="Sprite2D" parent="."]
+position = Vector2(1000, 410)
+texture = ExtResource("2_gh3hs")
