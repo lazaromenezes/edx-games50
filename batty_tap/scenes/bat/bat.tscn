@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bo5njlcmdpq6e"]
+
+[ext_resource type="Script" path="res://scenes/bat/bat.gd" id="1_mug2b"]
+[ext_resource type="Texture2D" uid="uid://b5sp6it2u34ax" path="res://assets/bat2/Bat1.png" id="2_gim3q"]
+[ext_resource type="Texture2D" uid="uid://3w2vbxs4ulri" path="res://assets/bat2/Bat2.png" id="3_mdkkt"]
+[ext_resource type="Texture2D" uid="uid://sppp4uteytrh" path="res://assets/bat2/Bat3.png" id="4_os3dk"]
+[ext_resource type="Texture2D" uid="uid://cwjuddvm6lhxh" path="res://assets/bat2/Bat4.png" id="5_pi3br"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yrgyx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gim3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mdkkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_os3dk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pi3br")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1auf"]
+radius = 27.2647
+height = 104.685
+
+[node name="Bat" type="CharacterBody2D"]
+script = ExtResource("1_mug2b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yrgyx")
+autoplay = "default"
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0.999996)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_d1auf")
