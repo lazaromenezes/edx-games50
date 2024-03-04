@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnr4vtggqojbe"]
+
+[ext_resource type="Script" path="res://scenes/crystal/crystal.gd" id="1_8kkxi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6lhc"]
+resource_local_to_scene = true
+size = Vector2(60, 400)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4lyu"]
+resource_local_to_scene = true
+size = Vector2(60, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6b8n"]
+resource_local_to_scene = true
+size = Vector2(60, 400)
+
+[node name="Crystal" type="Node2D"]
+script = ExtResource("1_8kkxi")
+
+[node name="Upper" type="Area2D" parent="."]
+position = Vector2(0, -286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upper"]
+shape = SubResource("RectangleShape2D_l6lhc")
+debug_color = Color(0.418947, 0.600387, 0.199131, 0.42)
+
+[node name="Gap" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gap"]
+shape = SubResource("RectangleShape2D_p4lyu")
+debug_color = Color(0.961531, 0.167772, 0.268859, 0.42)
+
+[node name="Lower" type="Area2D" parent="."]
+position = Vector2(0, 286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lower"]
+shape = SubResource("RectangleShape2D_m6b8n")
+debug_color = Color(0.419608, 0.6, 0.2, 0.419608)
+
+[connection signal="body_entered" from="Upper" to="." method="_on_body_entered_hit_area"]
+[connection signal="body_exited" from="Gap" to="." method="_on_body_passed"]
+[connection signal="body_entered" from="Lower" to="." method="_on_body_entered_hit_area"]
