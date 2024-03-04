@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw1ckuvm63o4c"]
+[gd_scene load_steps=8 format=3 uid="uid://cw1ckuvm63o4c"]
 
 [ext_resource type="PackedScene" uid="uid://bk3630luiwn1n" path="res://scenes/cave_background/cave_background.tscn" id="1_7entc"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="2_bcfwb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bo5njlcmdpq6e" path="res://scenes/bat/bat.tscn" id="3_gql87"]
 [ext_resource type="Theme" uid="uid://bpbqk1p8yyyxq" path="res://main_theme.tres" id="5_ovdyc"]
 [ext_resource type="PackedScene" uid="uid://bjdjme4iolf2t" path="res://scenes/game_over/game_over_layer.tscn" id="5_vsys0"]
+[ext_resource type="PackedScene" uid="uid://d03fpho3aqri0" path="res://scenes/count_down/count_down_layer.tscn" id="7_et4ii"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("2_bcfwb")
@@ -52,7 +53,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverLayer" parent="." instance=ExtResource("5_vsys0")]
+visible = false
+
+[node name="CountdownLayer" parent="." instance=ExtResource("7_et4ii")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="quit" from="GameOverLayer" to="." method="_on_game_over_layer_quit"]
 [connection signal="restarted" from="GameOverLayer" to="." method="_on_game_over_layer_restarted"]
+[connection signal="finished" from="CountdownLayer" to="." method="_on_countdown_layer_finished"]

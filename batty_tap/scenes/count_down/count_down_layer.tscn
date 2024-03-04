@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://d03fpho3aqri0"]
+
+[ext_resource type="Script" path="res://scenes/count_down/count_down_layer.gd" id="1_lrm5o"]
+[ext_resource type="Theme" uid="uid://bpbqk1p8yyyxq" path="res://main_theme.tres" id="1_lskoy"]
+
+[node name="CountdownLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_lrm5o")
+
+[node name="UI" type="Control" parent="."]
+auto_translate_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lskoy")
+
+[node name="Counter" type="Label" parent="UI"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 90
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
