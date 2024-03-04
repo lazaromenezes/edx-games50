@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo5njlcmdpq6e"]
+[gd_scene load_steps=10 format=3 uid="uid://bo5njlcmdpq6e"]
 
 [ext_resource type="Script" path="res://scenes/bat/bat.gd" id="1_mug2b"]
 [ext_resource type="Texture2D" uid="uid://b5sp6it2u34ax" path="res://assets/bat2/Bat1.png" id="2_gim3q"]
@@ -6,39 +6,85 @@
 [ext_resource type="Texture2D" uid="uid://sppp4uteytrh" path="res://assets/bat2/Bat3.png" id="4_os3dk"]
 [ext_resource type="Texture2D" uid="uid://cwjuddvm6lhxh" path="res://assets/bat2/Bat4.png" id="5_pi3br"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yrgyx"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_gim3q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_mdkkt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_os3dk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_pi3br")
-}],
-"loop": true,
-"name": &"default",
-"speed": 4.0
-}]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1auf"]
 radius = 27.2647
 height = 104.685
 
+[sub_resource type="Animation" id="Animation_pov8b"]
+resource_name = "bat_collision_animation"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 1.5708, 0.575959, 1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [ExtResource("2_gim3q"), ExtResource("3_mdkkt"), ExtResource("4_os3dk"), ExtResource("5_pi3br")]
+}
+
+[sub_resource type="Animation" id="Animation_cm1fx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_gim3q")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tj1oi"]
+_data = {
+"RESET": SubResource("Animation_cm1fx"),
+"bat_collision_animation": SubResource("Animation_pov8b")
+}
+
 [node name="Bat" type="CharacterBody2D"]
 script = ExtResource("1_mug2b")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_yrgyx")
-autoplay = "default"
-frame = 2
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gim3q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 0.999996)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_d1auf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tj1oi")
+}
+autoplay = "bat_collision_animation"
