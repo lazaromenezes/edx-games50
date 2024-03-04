@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw1ckuvm63o4c"]
+[gd_scene load_steps=7 format=3 uid="uid://cw1ckuvm63o4c"]
 
 [ext_resource type="PackedScene" uid="uid://bk3630luiwn1n" path="res://scenes/cave_background/cave_background.tscn" id="1_7entc"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="2_bcfwb"]
 [ext_resource type="PackedScene" uid="uid://bwrv8xbaij5wi" path="res://scenes/cave_front/cave_front.tscn" id="2_pybw8"]
 [ext_resource type="PackedScene" uid="uid://bo5njlcmdpq6e" path="res://scenes/bat/bat.tscn" id="3_gql87"]
+[ext_resource type="Theme" uid="uid://bpbqk1p8yyyxq" path="res://main_theme.tres" id="5_ovdyc"]
+[ext_resource type="PackedScene" uid="uid://bjdjme4iolf2t" path="res://scenes/game_over/game_over_layer.tscn" id="5_vsys0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("2_bcfwb")
@@ -23,4 +25,34 @@ anti_gravity = 400
 
 [node name="CaveFront" parent="." instance=ExtResource("2_pybw8")]
 
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_ovdyc")
+
+[node name="ScoreLabel" type="Label" parent="UILayer/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverLayer" parent="." instance=ExtResource("5_vsys0")]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="quit" from="GameOverLayer" to="." method="_on_game_over_layer_quit"]
+[connection signal="restarted" from="GameOverLayer" to="." method="_on_game_over_layer_restarted"]

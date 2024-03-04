@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bpbqk1p8yyyxq"]
+
+[ext_resource type="FontFile" uid="uid://1eowy08yrgt4" path="res://assets/font/MadimiOne-Regular.ttf" id="1_cc8bu"]
+
+[resource]
+Label/colors/font_color = Color(0.74092, 0.785931, 0.788868, 1)
+Label/colors/font_outline_color = Color(0.286275, 0.376471, 0.396078, 1)
+Label/constants/outline_size = 5
+Label/fonts/font = ExtResource("1_cc8bu")
