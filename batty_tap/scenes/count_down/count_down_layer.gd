@@ -9,7 +9,7 @@ func _ready() -> void:
 	$Timer.start(COUNTDOWN_TIME)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var time = fmod($Timer.time_left, 60)
 	if time >= 1:
 		$UI/Counter.text = "%1d" % time

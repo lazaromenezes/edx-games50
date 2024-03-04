@@ -7,6 +7,7 @@ const MIN_GAP: float = 170
 const MAX_GAP: float = 270
 
 const CRYSTAL_HEIGHT: float = 400
+const CRYSTAL_WIDTH: float = 60
 const OFFSET: float = 1
 
 @export var speed: float = 100
@@ -21,9 +22,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	position.x -= speed * delta
+	
+	if to_global(position).x < -CRYSTAL_WIDTH:
+		_destroy()
 
 func _on_body_entered_hit_area(_body: Node2D) -> void:
 	hit.emit()
 
 func _on_body_passed(_body: Node2D) -> void:
 	passed.emit()
+	
+func _destroy():
+	call_deferred("queue_free")
