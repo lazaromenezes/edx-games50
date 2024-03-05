@@ -43,6 +43,12 @@ quit={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="bat"
+2d_physics/layer_3="gap"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

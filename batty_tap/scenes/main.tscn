@@ -58,6 +58,7 @@ visible = false
 [node name="CountdownLayer" parent="." instance=ExtResource("7_et4ii")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="hit" from="CaveFront" to="." method="_on_hit"]
 [connection signal="quit" from="GameOverLayer" to="." method="_on_game_over_layer_quit"]
 [connection signal="restarted" from="GameOverLayer" to="." method="_on_game_over_layer_restarted"]
 [connection signal="finished" from="CountdownLayer" to="." method="_on_countdown_layer_finished"]

@@ -19,12 +19,15 @@ script = ExtResource("1_8kkxi")
 
 [node name="Upper" type="Area2D" parent="."]
 position = Vector2(0, -286)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Upper"]
 shape = SubResource("RectangleShape2D_l6lhc")
 debug_color = Color(0.418947, 0.600387, 0.199131, 0.42)
 
 [node name="Gap" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gap"]
 shape = SubResource("RectangleShape2D_p4lyu")
@@ -32,6 +35,7 @@ debug_color = Color(0.961531, 0.167772, 0.268859, 0.42)
 
 [node name="Lower" type="Area2D" parent="."]
 position = Vector2(0, 286)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lower"]
 shape = SubResource("RectangleShape2D_m6b8n")
