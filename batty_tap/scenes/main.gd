@@ -51,6 +51,3 @@ func _on_countdown_layer_finished() -> void:
 	
 func _on_crystal_destroy_area_area_exited(area: Area2D) -> void:
 	area.get_parent().call_deferred("destroy")
-
-func _on_music_player_finished() -> void:
-	$Audio/MusicPlayer.play()
