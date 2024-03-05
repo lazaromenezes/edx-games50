@@ -13,6 +13,8 @@ const OFFSET: float = 1
 @export var speed: float = 100
 @export var available_cristals: Array[CrystalTexture] = []
 
+var _passed: bool = false
+
 func _ready() -> void:
 	_draw_crystal($Upper/Sprite2D, $Upper/PointLight2D, available_cristals.pick_random())
 	_draw_crystal($Lower/Sprite2D, $Lower/PointLight2D, available_cristals.pick_random())
@@ -34,7 +36,9 @@ func _on_body_entered_hit_area(_body: Node2D) -> void:
 	hit.emit()
 
 func _on_body_passed(_body: Node2D) -> void:
-	passed.emit()
+	if not _passed:
+		passed.emit()
+		_passed = true
 	
 func _destroy():
 	call_deferred("queue_free")
