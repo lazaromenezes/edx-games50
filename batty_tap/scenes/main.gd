@@ -23,12 +23,14 @@ func _on_spawn_timer_timeout() -> void:
 	_schedule_spawn()
 
 func _on_hit():
+	$Audio/HurtAudio.play()
 	$GameOverLayer.show()
 	get_tree().paused = true
 
 func _on_passed():
 	_score += 1
 	%ScoreLabel.text = str(_score)
+	$Audio/PassedAudio.play()
 
 func _on_game_over_layer_restarted() -> void:
 	get_tree().reload_current_scene()
@@ -49,3 +51,6 @@ func _on_countdown_layer_finished() -> void:
 	
 func _on_crystal_destroy_area_area_exited(area: Area2D) -> void:
 	area.get_parent().call_deferred("destroy")
+
+func _on_music_player_finished() -> void:
+	$Audio/MusicPlayer.play()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo5njlcmdpq6e"]
+[gd_scene load_steps=11 format=3 uid="uid://bo5njlcmdpq6e"]
 
 [ext_resource type="Script" path="res://scenes/bat/bat.gd" id="1_mug2b"]
 [ext_resource type="Texture2D" uid="uid://b5sp6it2u34ax" path="res://assets/bat2/Bat1.png" id="2_gim3q"]
 [ext_resource type="Texture2D" uid="uid://3w2vbxs4ulri" path="res://assets/bat2/Bat2.png" id="3_mdkkt"]
 [ext_resource type="Texture2D" uid="uid://sppp4uteytrh" path="res://assets/bat2/Bat3.png" id="4_os3dk"]
 [ext_resource type="Texture2D" uid="uid://cwjuddvm6lhxh" path="res://assets/bat2/Bat4.png" id="5_pi3br"]
+[ext_resource type="AudioStream" uid="uid://3isyqvybl3aq" path="res://assets/sfx/flap.wav" id="6_u6bjw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1auf"]
 radius = 27.2647
@@ -91,3 +92,8 @@ libraries = {
 "": SubResource("AnimationLibrary_tj1oi")
 }
 autoplay = "bat_collision_animation"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_u6bjw")
+volume_db = 3.82
+bus = &"Sfx"
