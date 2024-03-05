@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw1ckuvm63o4c"]
+[gd_scene load_steps=10 format=3 uid="uid://cw1ckuvm63o4c"]
 
 [ext_resource type="PackedScene" uid="uid://bk3630luiwn1n" path="res://scenes/cave_background/cave_background.tscn" id="1_7entc"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="2_bcfwb"]
@@ -8,10 +8,33 @@
 [ext_resource type="PackedScene" uid="uid://bjdjme4iolf2t" path="res://scenes/game_over/game_over_layer.tscn" id="5_vsys0"]
 [ext_resource type="PackedScene" uid="uid://d03fpho3aqri0" path="res://scenes/count_down/count_down_layer.tscn" id="7_et4ii"]
 
+[sub_resource type="Gradient" id="Gradient_iwudm"]
+offsets = PackedFloat32Array(0.719258, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_12pjm"]
+gradient = SubResource("Gradient_iwudm")
+width = 480
+height = 854
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.129256, 0.504273)
+fill_to = Vector2(0.433387, 0.132479)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("2_bcfwb")
 spawn_limits = Vector2(2, 3)
 metadata/_edit_horizontal_guides_ = [427.0, 130.0, 680.0]
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(240, 427)
+color = Color(0.230315, 0.230315, 0.230315, 1)
+energy = 2.61
+blend_mode = 1
+shadow_color = Color(0, 0, 0, 0.717647)
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_12pjm")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0

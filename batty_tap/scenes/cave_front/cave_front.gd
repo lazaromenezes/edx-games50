@@ -12,5 +12,5 @@ func _process(delta: float) -> void:
 	if $CaveSprite.position.x < LOOPING_POINT:
 		$CaveSprite.position.x = INITIAL_POSITION
 
-func _on_hit(body: Node2D):
+func _on_hit(_body: Node2D):
 	hit.emit()

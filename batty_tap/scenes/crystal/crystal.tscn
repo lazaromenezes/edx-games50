@@ -1,29 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnr4vtggqojbe"]
+[gd_scene load_steps=17 format=3 uid="uid://dnr4vtggqojbe"]
 
 [ext_resource type="Script" path="res://scenes/crystal/crystal.gd" id="1_8kkxi"]
+[ext_resource type="Script" path="res://resources/crystal_texture/crystal_texture.gd" id="2_2ssty"]
+[ext_resource type="Texture2D" uid="uid://d1b5ti0r81vyf" path="res://assets/crystals/crystals_by_phobi_edited.svg" id="2_q42v3"]
+[ext_resource type="Texture2D" uid="uid://bym86ibvsh2mr" path="res://assets/crystals/light.svg" id="3_hm7a7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6lhc"]
-resource_local_to_scene = true
-size = Vector2(60, 400)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxwc4"]
+atlas = ExtResource("2_q42v3")
+region = Rect2(20, 20, 58, 448)
+
+[sub_resource type="Resource" id="Resource_xq4ac"]
+script = ExtResource("2_2ssty")
+image = SubResource("AtlasTexture_yxwc4")
+emission = Color(1, 0.274086, 0.212371, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu750"]
+atlas = ExtResource("2_q42v3")
+region = Rect2(127, 20, 58, 448)
+
+[sub_resource type="Resource" id="Resource_fwvmx"]
+script = ExtResource("2_2ssty")
+image = SubResource("AtlasTexture_eu750")
+emission = Color(0.831373, 1, 0.164706, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3bib"]
+atlas = ExtResource("2_q42v3")
+region = Rect2(240, 20, 58, 448)
+
+[sub_resource type="Resource" id="Resource_3okcd"]
+script = ExtResource("2_2ssty")
+image = SubResource("AtlasTexture_e3bib")
+emission = Color(0.00120962, 0.287357, 0.960464, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgaex"]
+atlas = ExtResource("2_q42v3")
+region = Rect2(347, 20, 58, 448)
+
+[sub_resource type="Resource" id="Resource_xo4r0"]
+script = ExtResource("2_2ssty")
+image = SubResource("AtlasTexture_kgaex")
+emission = Color(0.74104, 0.237879, 0.799958, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_610ti"]
+atlas = ExtResource("2_q42v3")
+region = Rect2(458, 20, 58, 448)
+
+[sub_resource type="Resource" id="Resource_wrqtt"]
+script = ExtResource("2_2ssty")
+image = SubResource("AtlasTexture_610ti")
+emission = Color(0, 0.937255, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkho6"]
+atlas = ExtResource("2_q42v3")
+region = Rect2(20, 20, 58, 448)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p4lyu"]
 resource_local_to_scene = true
 size = Vector2(60, 170)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6b8n"]
-resource_local_to_scene = true
-size = Vector2(60, 400)
-
 [node name="Crystal" type="Node2D"]
 script = ExtResource("1_8kkxi")
+available_cristals = Array[ExtResource("2_2ssty")]([SubResource("Resource_xq4ac"), SubResource("Resource_fwvmx"), SubResource("Resource_3okcd"), SubResource("Resource_xo4r0"), SubResource("Resource_wrqtt")])
 
 [node name="Upper" type="Area2D" parent="."]
-position = Vector2(0, -286)
+position = Vector2(0, -309)
+scale = Vector2(-1, -1)
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Upper"]
-shape = SubResource("RectangleShape2D_l6lhc")
-debug_color = Color(0.418947, 0.600387, 0.199131, 0.42)
+[node name="PointLight2D" type="PointLight2D" parent="Upper"]
+position = Vector2(0, -164)
+color = Color(0.94902, 0.0705882, 0.25098, 1)
+energy = 1.02
+texture = ExtResource("3_hm7a7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Upper"]
+texture = SubResource("AtlasTexture_qkho6")
+
+[node name="CollisionShape2D3" type="CollisionPolygon2D" parent="Upper"]
+polygon = PackedVector2Array(1.5, -224, -29, -126, -12, 224, -3, 224, 10, 224, 29, -126)
 
 [node name="Gap" type="Area2D" parent="."]
 collision_layer = 4
@@ -34,12 +88,20 @@ shape = SubResource("RectangleShape2D_p4lyu")
 debug_color = Color(0.961531, 0.167772, 0.268859, 0.42)
 
 [node name="Lower" type="Area2D" parent="."]
-position = Vector2(0, 286)
+position = Vector2(0, 309)
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lower"]
-shape = SubResource("RectangleShape2D_m6b8n")
-debug_color = Color(0.419608, 0.6, 0.2, 0.419608)
+[node name="PointLight2D" type="PointLight2D" parent="Lower"]
+position = Vector2(0, -164)
+color = Color(0.94902, 0.0705882, 0.25098, 1)
+energy = 1.02
+texture = ExtResource("3_hm7a7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lower"]
+texture = SubResource("AtlasTexture_qkho6")
+
+[node name="CollisionShape2D3" type="CollisionPolygon2D" parent="Lower"]
+polygon = PackedVector2Array(1.5, -224, -29, -126, -12, 224, -3, 224, 10, 224, 29, -126)
 
 [connection signal="body_entered" from="Upper" to="." method="_on_body_entered_hit_area"]
 [connection signal="body_exited" from="Gap" to="." method="_on_body_passed"]
