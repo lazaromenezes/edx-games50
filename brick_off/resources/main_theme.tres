@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c0j68svnqomy8"]
+
+[ext_resource type="FontFile" uid="uid://1eowy08yrgt4" path="res://assets/font/MadimiOne-Regular.ttf" id="1_upoya"]
+
+[resource]
+default_font = ExtResource("1_upoya")
