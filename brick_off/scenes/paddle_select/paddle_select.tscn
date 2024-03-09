@@ -78,7 +78,7 @@ text = "  >>>  "
 [node name="StartButton" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
-text = "PRESS ENTER TO START"
+text = "Press Enter to Play"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]

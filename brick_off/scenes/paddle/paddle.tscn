@@ -11,6 +11,8 @@ radius = 48.0
 height = 386.0
 
 [node name="Paddle" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_q2exg")
 available_paddles = Array[AtlasTexture]([ExtResource("1_ty4xw"), ExtResource("3_0nk8u"), ExtResource("4_mueo2"), ExtResource("5_r5dq0")])
 

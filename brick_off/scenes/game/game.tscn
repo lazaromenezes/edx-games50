@@ -1,16 +1,90 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5y8k8fa6p0da"]
+[gd_scene load_steps=8 format=3 uid="uid://b5y8k8fa6p0da"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_om1mc"]
 [ext_resource type="PackedScene" uid="uid://dtfitu5new3yh" path="res://scenes/paddle/paddle.tscn" id="2_tbegc"]
 [ext_resource type="PackedScene" uid="uid://dfudn4jbseg8b" path="res://scenes/ball/ball.tscn" id="3_lq3dq"]
+[ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="4_ellya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76k24"]
+size = Vector2(1, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca6f5"]
+size = Vector2(1, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33n8t"]
+size = Vector2(1280, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_om1mc")
+metadata/_edit_vertical_guides_ = [1280.0]
 
 [node name="Paddle" parent="." instance=ExtResource("2_tbegc")]
-position = Vector2(633, 681)
+position = Vector2(632, 681)
 scale = Vector2(0.5, 0.5)
+collision_mask = 0
 
 [node name="Ball" parent="." instance=ExtResource("3_lq3dq")]
-position = Vector2(633, 640)
+position = Vector2(633, 644)
 scale = Vector2(0.5, 0.5)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Left" type="StaticBody2D" parent="Walls"]
+position = Vector2(-0.5, 360)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left"]
+shape = SubResource("RectangleShape2D_76k24")
+
+[node name="Right" type="StaticBody2D" parent="Walls"]
+position = Vector2(1280.5, 360)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right"]
+shape = SubResource("RectangleShape2D_ca6f5")
+
+[node name="Top" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, -0.5)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top"]
+shape = SubResource("RectangleShape2D_33n8t")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ellya")
+
+[node name="LevelDisplay" type="VBoxContainer" parent="UILayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level" type="Label" parent="UILayer/Control/LevelDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Level %d"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UILayer/Control/LevelDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Press [ SPACE ] to Serve"
+horizontal_alignment = 1
+vertical_alignment = 1

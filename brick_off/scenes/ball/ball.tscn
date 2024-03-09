@@ -10,6 +10,7 @@
 radius = 24.0
 
 [node name="Ball" type="CharacterBody2D"]
+collision_mask = 6
 script = ExtResource("1_mex37")
 available_balls = Array[AtlasTexture]([ExtResource("1_y0p0g"), ExtResource("3_00mer"), ExtResource("4_701mg"), ExtResource("5_idlbg")])
 
