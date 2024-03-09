@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5certv6f1xya"]
+
+[ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="1_1l5wu"]
+[ext_resource type="Script" path="res://scenes/paddle_select/paddle_select.gd" id="2_jjj00"]
+[ext_resource type="Texture2D" uid="uid://cpm38l8ldc0xn" path="res://resources/paddles/paddle_blue_medium.tres" id="3_a0bga"]
+[ext_resource type="Texture2D" uid="uid://btqx8iwk5s3hm" path="res://resources/paddles/paddle_green_medium.tres" id="4_ej8px"]
+[ext_resource type="Texture2D" uid="uid://dnufk1njqbbjh" path="res://resources/paddles/paddle_purple_medium.tres" id="5_ognpu"]
+[ext_resource type="Texture2D" uid="uid://dfq5iup8e65ed" path="res://resources/paddles/paddle_red_medium.tres" id="6_pottf"]
+
+[node name="PaddleSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1l5wu")
+script = ExtResource("2_jjj00")
+available_paddles = Array[AtlasTexture]([ExtResource("3_a0bga"), ExtResource("4_ej8px"), ExtResource("5_ognpu"), ExtResource("6_pottf")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -292.0
+offset_top = -206.5
+offset_right = 292.0
+offset_bottom = 206.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+text = "SELECT YOUR 
+PADDLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="LeftButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "  <<<  "
+
+[node name="Paddle" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+texture = ExtResource("3_a0bga")
+
+[node name="RightButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "  >>>  "
+
+[node name="StartButton" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "PRESS ENTER TO START"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]
