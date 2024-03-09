@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtfitu5new3yh"]
+[gd_scene load_steps=7 format=3 uid="uid://dtfitu5new3yh"]
 
 [ext_resource type="Script" path="res://scenes/paddle/paddle.gd" id="1_q2exg"]
 [ext_resource type="Texture2D" uid="uid://cpm38l8ldc0xn" path="res://resources/paddles/paddle_blue_medium.tres" id="1_ty4xw"]
+[ext_resource type="Texture2D" uid="uid://btqx8iwk5s3hm" path="res://resources/paddles/paddle_green_medium.tres" id="3_0nk8u"]
+[ext_resource type="Texture2D" uid="uid://dnufk1njqbbjh" path="res://resources/paddles/paddle_purple_medium.tres" id="4_mueo2"]
+[ext_resource type="Texture2D" uid="uid://dfq5iup8e65ed" path="res://resources/paddles/paddle_red_medium.tres" id="5_r5dq0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bg2li"]
 radius = 48.0
@@ -9,7 +12,7 @@ height = 386.0
 
 [node name="Paddle" type="StaticBody2D"]
 script = ExtResource("1_q2exg")
-move_speed = 250.0
+available_paddles = Array[AtlasTexture]([ExtResource("1_ty4xw"), ExtResource("3_0nk8u"), ExtResource("4_mueo2"), ExtResource("5_r5dq0")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ty4xw")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfudn4jbseg8b"]
+
+[ext_resource type="Script" path="res://scenes/ball/ball.gd" id="1_mex37"]
+[ext_resource type="Texture2D" uid="uid://dufv0gpmwv2rf" path="res://resources/balls/ball_blue.tres" id="1_y0p0g"]
+[ext_resource type="Texture2D" uid="uid://vgg7qfm3m238" path="res://resources/balls/ball_green.tres" id="3_00mer"]
+[ext_resource type="Texture2D" uid="uid://fwd1xixs651f" path="res://resources/balls/ball_purple.tres" id="4_701mg"]
+[ext_resource type="Texture2D" uid="uid://ut5vojq4alw" path="res://resources/balls/ball_red.tres" id="5_idlbg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yjs1t"]
+radius = 24.0
+
+[node name="Ball" type="CharacterBody2D"]
+script = ExtResource("1_mex37")
+available_balls = Array[AtlasTexture]([ExtResource("1_y0p0g"), ExtResource("3_00mer"), ExtResource("4_701mg"), ExtResource("5_idlbg")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y0p0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yjs1t")

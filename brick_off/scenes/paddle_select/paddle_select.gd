@@ -17,5 +17,5 @@ func _on_left_button_pressed() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		GameState.selected_paddle_texture = available_paddles[_current_paddle]
+		GameState.selected_color = _current_paddle
 		SceneManager.change_to(SceneManager.GAME)
