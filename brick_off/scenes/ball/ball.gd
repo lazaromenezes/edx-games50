@@ -26,9 +26,6 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.bounce(collision.get_normal())
 
 			_increase_speed()
-			
-	else:
-		velocity = Vector2.ZERO
 
 func serve() -> void:
 	velocity.y = initial_speed * Vector2.UP.y
@@ -38,6 +35,8 @@ func serve() -> void:
 
 func reset() -> void:
 	position = initial_position
+	velocity = Vector2.ZERO
+	_is_served = false
 
 func _increase_speed():
 	if abs(velocity.y) < max_speed:
