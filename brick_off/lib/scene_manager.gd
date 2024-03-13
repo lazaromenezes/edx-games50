@@ -21,4 +21,4 @@ var scenes: Dictionary = {
 }
 
 func change_to(scene: String):
-	get_tree().change_scene_to_packed(scenes[scene])
+	get_tree().call_deferred("change_scene_to_packed", scenes[scene])

@@ -6,8 +6,12 @@ signal hit(brick: Brick)
 var size: Vector2
 var points: int = 10
 
+@export
+var brick_set: BrickSet
+
 func _ready() -> void:
 	size = $Sprite2D.texture.region.size * scale
+	$Sprite2D.texture = brick_set.layers[0]
 
 func place(grid_size: Vector2, row: int, column: int):
 	grid_size *= 0.5

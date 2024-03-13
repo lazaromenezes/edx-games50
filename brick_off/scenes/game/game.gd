@@ -32,8 +32,9 @@ func _input(event: InputEvent) -> void:
 
 func _next_level():
 	_current_level += 1
-	$Level.spawn_bricks()
 	_to_serve()
+	await get_tree().create_timer(0.2).timeout
+	$Level.call_deferred("spawn_bricks")
 
 func _set_paddle_initial_position(screen_size: Vector2):
 	var initial_x = screen_size.x / 2
@@ -53,10 +54,10 @@ func _on_bottom_body_exited(_body: Node2D) -> void:
 	_to_serve() if _lifes > 0 else SceneManager.change_to(SceneManager.GAME_OVER)
 
 func _to_serve():
-	_current_state = State.SERVE
-
 	$Ball.reset()
 	$Paddle.reset()
+	
+	_current_state = State.SERVE
 
 	%LevelDisplay/Level.text = LEVEL_DISPLAY % _current_level
 	%LevelDisplay.show()
@@ -72,4 +73,4 @@ func _on_level_scored(points: int) -> void:
 	_update_score()
 
 func _on_level_cleared() -> void:
-	call_deferred("_next_level")
+	_next_level()

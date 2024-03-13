@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3dndety6ejda"]
+[gd_scene load_steps=6 format=3 uid="uid://c3dndety6ejda"]
 
 [ext_resource type="Script" path="res://scenes/brick/brick.gd" id="1_n1svm"]
 [ext_resource type="Texture2D" uid="uid://bedjf25t7ktcx" path="res://resources/bricks/blue/brick_blue.tres" id="1_pjebh"]
+[ext_resource type="Resource" uid="uid://dm6o5pcc4d2e" path="res://resources/bricks/blue/blue_set.tres" id="2_x7mj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yae5b"]
 size = Vector2(192, 96)
@@ -13,6 +14,7 @@ size = Vector2(190, 94)
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 script = ExtResource("1_n1svm")
+brick_set = ExtResource("2_x7mj5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pjebh")

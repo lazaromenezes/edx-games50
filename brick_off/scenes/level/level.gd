@@ -3,8 +3,8 @@ extends Node2D
 signal scored(points: int)
 signal cleared()
 
-const MAX_ROWS: int = 1
-const MAX_COLS: int = 3
+const MAX_ROWS: int = 5
+const MAX_COLS: int = 13
 const MIN_COLS: int = 7
 
 const MARGIN_TOP: int = 96
@@ -21,10 +21,14 @@ func _ready() -> void:
 
 func spawn_bricks():
 	var grid_size = _create_random_grid()
-
+	
 	for row in grid_size.y:
+		
+		var brick_set = available_brick_sets.pick_random()
+		
 		for column in grid_size.x:
-			_add_brick(grid_size, row, column)
+			_add_brick(grid_size, row, column, brick_set)
+			
 
 	position.x = _viewport_size.x / 2.0
 	position.y = MARGIN_TOP + (MAX_ROWS * BRICK_HEIGHT / 2.0)
@@ -36,10 +40,14 @@ func _create_random_grid() -> Vector2:
 	
 	return Vector2(cols, rows)
 
-func _add_brick(grid_size: Vector2, row: int, column: int):
+func _add_brick(grid_size: Vector2, row: int, column: int, brick_set: BrickSet = null):
 	var brick = _brickScene.instantiate()
 	brick.hit.connect(_on_brick_hit)
 	brick.tree_exited.connect(_check_clearence)
+	
+	if brick_set:
+		brick.brick_set = brick_set
+		
 	add_child(brick)
 	brick.place(grid_size, row, column)
 
