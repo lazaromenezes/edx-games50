@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BrickSet" load_steps=4 format=3 uid="uid://q70gxupjj0ey"]
+
+[ext_resource type="Script" path="res://resources/bricks/brick_set.gd" id="1_6sw6o"]
+[ext_resource type="Texture2D" uid="uid://cdl5psm11f2s8" path="res://resources/bricks/special/brick_unlocked.tres" id="1_ooltb"]
+[ext_resource type="Texture2D" uid="uid://bhix5nqordhf3" path="res://resources/bricks/special/brick_locked.tres" id="2_qq7re"]
+
+[resource]
+script = ExtResource("1_6sw6o")
+layers = Array[AtlasTexture]([ExtResource("1_ooltb"), ExtResource("2_qq7re")])

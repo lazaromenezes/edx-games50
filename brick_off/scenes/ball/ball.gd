@@ -20,9 +20,11 @@ func _physics_process(delta: float) -> void:
 
 		if collision:
 			
-			if(collision.get_collider() is Paddle):
+			var collider = collision.get_collider()
+
+			if collider is Paddle:
 				position.y = initial_position.y
-			
+
 			velocity = velocity.bounce(collision.get_normal())
 
 			_increase_speed()
