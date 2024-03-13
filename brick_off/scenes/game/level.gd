@@ -1,9 +1,10 @@
 extends Node2D
 
 signal scored(points: int)
+signal cleared()
 
-const MAX_ROWS: int = 5
-const MAX_COLS: int = 13
+const MAX_ROWS: int = 1
+const MAX_COLS: int = 3
 const MIN_COLS: int = 7
 
 const MARGIN_TOP: int = 96
@@ -35,8 +36,14 @@ func _create_random_grid() -> Vector2:
 func _add_brick(grid_size: Vector2, row: int, column: int):
 	var brick = _brickScene.instantiate()
 	brick.hit.connect(_on_brick_hit)
+	brick.tree_exited.connect(_check_clearence)
 	add_child(brick)
 	brick.place(grid_size, row, column)
 
-func _on_brick_hit(points: int):
-	scored.emit(points)
+func _on_brick_hit(brick: Brick):
+	scored.emit(brick.points)
+	brick.queue_free()
+
+func _check_clearence() -> void:
+	if get_child_count() == 0:
+		cleared.emit()

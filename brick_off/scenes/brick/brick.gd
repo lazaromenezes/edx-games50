@@ -1,6 +1,7 @@
 extends StaticBody2D
+class_name Brick
 
-signal hit(points: int)
+signal hit(brick: Brick)
 
 var size: Vector2
 var points: int = 10
@@ -15,5 +16,4 @@ func place(grid_size: Vector2, row: int, column: int):
 	position.y = (-grid_size.y + row) * size.y + size.y / 2
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
-	hit.emit(points)
-	call_deferred("queue_free")
+	hit.emit(self)

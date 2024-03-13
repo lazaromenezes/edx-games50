@@ -33,9 +33,9 @@ func _input(event: InputEvent) -> void:
 
 func _next_level():
 	_current_level += 1
-	$BrickArea.spawn_bricks()
+	$Level.spawn_bricks()
 	_to_serve()
-	
+
 func _set_paddle_initial_position(screen_size: Vector2):
 	var initial_x = screen_size.x / 2
 	var initial_y = screen_size.y - PADDLE_BOTTOM_OFFSET - $Paddle.size.y / 2
@@ -68,6 +68,9 @@ func _update_life_bar():
 func _update_score():
 	%Score.text = str(_score)
 
-func _on_brick_area_scored(points: int) -> void:
+func _on_level_scored(points: int) -> void:
 	_score += points
 	_update_score()
+
+func _on_level_cleared() -> void:
+	call_deferred("_next_level")
