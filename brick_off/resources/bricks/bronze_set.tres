@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BrickSet" load_steps=7 format=3 uid="uid://dfoth64vdb032"]
+
+[ext_resource type="Texture2D" uid="uid://1akch0riwrsv" path="res://resources/bricks/green/brick_green_bronze.tres" id="1_88e05"]
+[ext_resource type="Texture2D" uid="uid://c7k76d3xs737u" path="res://resources/bricks/orange/brick_orange_bronze.tres" id="2_ichpk"]
+[ext_resource type="Texture2D" uid="uid://p4ljhm4e7v2j" path="res://resources/bricks/red/brick_red_bronze.tres" id="3_byxus"]
+[ext_resource type="Texture2D" uid="uid://dc48b4rfaegcy" path="res://resources/bricks/blue/brick_blue_bronze.tres" id="4_lywb2"]
+[ext_resource type="Texture2D" uid="uid://ddu8sajemaddl" path="res://resources/bricks/purple/brick_purple_bronze.tres" id="5_rxkjf"]
+[ext_resource type="Script" path="res://resources/bricks/brick_set.gd" id="6_lnxod"]
+
+[resource]
+script = ExtResource("6_lnxod")
+layers = Array[AtlasTexture]([ExtResource("1_88e05"), ExtResource("2_ichpk"), ExtResource("3_byxus"), ExtResource("4_lywb2"), ExtResource("5_rxkjf")])

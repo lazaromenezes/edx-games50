@@ -34,7 +34,7 @@ func _next_level():
 	_current_level += 1
 	_to_serve()
 	await get_tree().create_timer(0.2).timeout
-	$Level.call_deferred("spawn_bricks")
+	$Level.call_deferred("spawn_bricks", _current_level)
 
 func _set_paddle_initial_position(screen_size: Vector2):
 	var initial_x = screen_size.x / 2

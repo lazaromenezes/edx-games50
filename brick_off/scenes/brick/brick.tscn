@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3dndety6ejda"]
+[gd_scene load_steps=9 format=3 uid="uid://c3dndety6ejda"]
 
 [ext_resource type="Script" path="res://scenes/brick/brick.gd" id="1_n1svm"]
 [ext_resource type="Texture2D" uid="uid://bedjf25t7ktcx" path="res://resources/bricks/blue/brick_blue.tres" id="1_pjebh"]
-[ext_resource type="Resource" uid="uid://dm6o5pcc4d2e" path="res://resources/bricks/blue/blue_set.tres" id="2_x7mj5"]
+[ext_resource type="Resource" uid="uid://w4wvn3jyta3k" path="res://resources/bricks/normal_set.tres" id="2_7nvmj"]
+[ext_resource type="Resource" uid="uid://dfoth64vdb032" path="res://resources/bricks/bronze_set.tres" id="3_vtudh"]
+[ext_resource type="Resource" uid="uid://dutt84m7ynwxm" path="res://resources/bricks/silver_set.tres" id="4_hgver"]
+[ext_resource type="Resource" uid="uid://chc18rlfwbkbe" path="res://resources/bricks/gold_set.tres" id="5_fij48"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yae5b"]
 size = Vector2(192, 96)
@@ -14,7 +17,7 @@ size = Vector2(190, 94)
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 script = ExtResource("1_n1svm")
-brick_set = ExtResource("2_x7mj5")
+brick_sets = Array[Object]([ExtResource("2_7nvmj"), ExtResource("3_vtudh"), ExtResource("4_hgver"), ExtResource("5_fij48")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pjebh")
