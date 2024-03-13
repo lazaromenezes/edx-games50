@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	GameState.score = 0
 	%StartButton.grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:

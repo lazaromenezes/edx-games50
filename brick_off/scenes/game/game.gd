@@ -8,7 +8,6 @@ enum State{SERVE, PLAY}
 var _current_state: State = State.SERVE
 var _current_level: int = 0
 var _lifes: int = 3
-var _score: int = 0		
 
 func _ready() -> void:
 	var screen_size = get_viewport_rect().size
@@ -51,7 +50,7 @@ func _set_ball_initial_position(screen_size: Vector2):
 func _on_bottom_body_exited(_body: Node2D) -> void:
 	_lifes -= 1
 	_update_life_bar()
-	_to_serve()
+	_to_serve() if _lifes > 0 else SceneManager.change_to(SceneManager.GAME_OVER)
 
 func _to_serve():
 	_current_state = State.SERVE
@@ -66,10 +65,10 @@ func _update_life_bar():
 	%LifeBar.value = _lifes
 
 func _update_score():
-	%Score.text = str(_score)
+	%Score.text = str(GameState.score)
 
 func _on_level_scored(points: int) -> void:
-	_score += points
+	GameState.score += points
 	_update_score()
 
 func _on_level_cleared() -> void:

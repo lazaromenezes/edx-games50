@@ -1,11 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5y8k8fa6p0da"]
+[gd_scene load_steps=18 format=3 uid="uid://b5y8k8fa6p0da"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_om1mc"]
 [ext_resource type="PackedScene" uid="uid://dtfitu5new3yh" path="res://scenes/paddle/paddle.tscn" id="2_tbegc"]
 [ext_resource type="PackedScene" uid="uid://dfudn4jbseg8b" path="res://scenes/ball/ball.tscn" id="3_lq3dq"]
 [ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="4_ellya"]
-[ext_resource type="Script" path="res://scenes/game/level.gd" id="4_ky03s"]
+[ext_resource type="PackedScene" uid="uid://cgxfs2ve41cw7" path="res://scenes/level/level.tscn" id="4_innyc"]
 [ext_resource type="Texture2D" uid="uid://rxpul5ek7pfq" path="res://assets/hearts/heart_48x48.png" id="5_74f5x"]
+[ext_resource type="Resource" uid="uid://dm6o5pcc4d2e" path="res://resources/bricks/blue/blue_set.tres" id="5_i47we"]
+[ext_resource type="Resource" uid="uid://i5pa2cph6ful" path="res://resources/bricks/green/green_set.tres" id="6_mfk4n"]
+[ext_resource type="Resource" uid="uid://uc8a21ff0cvh" path="res://resources/bricks/orange/orange_set.tres" id="7_vuoka"]
+[ext_resource type="Resource" uid="uid://trbyyiep0ije" path="res://resources/bricks/purple/purple_set.tres" id="8_loeeb"]
+[ext_resource type="Resource" uid="uid://bvnmtcyr738g7" path="res://resources/bricks/red/red_set.tres" id="9_ji4jh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76k24"]
 size = Vector2(1, 720)
@@ -72,8 +77,8 @@ position = Vector2(640, 720.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom"]
 shape = SubResource("RectangleShape2D_s654b")
 
-[node name="Level" type="Node2D" parent="."]
-script = ExtResource("4_ky03s")
+[node name="Level" parent="." instance=ExtResource("4_innyc")]
+available_brick_sets = Array[Resource("res://resources/bricks/brick_set.gd")]([ExtResource("5_i47we"), ExtResource("6_mfk4n"), ExtResource("7_vuoka"), ExtResource("8_loeeb"), ExtResource("9_ji4jh")])
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 

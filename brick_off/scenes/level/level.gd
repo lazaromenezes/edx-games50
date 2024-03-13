@@ -10,6 +10,9 @@ const MIN_COLS: int = 7
 const MARGIN_TOP: int = 96
 const BRICK_HEIGHT: int = 48
 
+@export
+var available_brick_sets: Array[BrickSet]
+
 var _brickScene = preload("res://scenes/brick/brick.tscn")
 var _viewport_size: Vector2
 
