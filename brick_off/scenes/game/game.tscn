@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dtfitu5new3yh" path="res://scenes/paddle/paddle.tscn" id="2_tbegc"]
 [ext_resource type="PackedScene" uid="uid://dfudn4jbseg8b" path="res://scenes/ball/ball.tscn" id="3_lq3dq"]
 [ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="4_ellya"]
-[ext_resource type="Texture2D" uid="uid://ve5tgnnpclqx" path="res://assets/breakout_big.png" id="5_q2v1y"]
+[ext_resource type="Texture2D" uid="uid://rxpul5ek7pfq" path="res://assets/hearts/heart_48x48.png" id="5_74f5x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76k24"]
 size = Vector2(1, 720)
@@ -19,12 +19,12 @@ size = Vector2(1280, 1)
 size = Vector2(1280, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cfgx8"]
-atlas = ExtResource("5_q2v1y")
-region = Rect2(832, 288, 56, 56)
+atlas = ExtResource("5_74f5x")
+region = Rect2(0, 51, 150, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sm64a"]
-atlas = ExtResource("5_q2v1y")
-region = Rect2(768, 288, 56, 56)
+[sub_resource type="AtlasTexture" id="AtlasTexture_elg3m"]
+atlas = ExtResource("5_74f5x")
+region = Rect2(0, 0, 150, 48)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_om1mc")
@@ -34,7 +34,6 @@ metadata/_edit_vertical_guides_ = [1280.0]
 position = Vector2(632, 681)
 scale = Vector2(0.5, 0.5)
 collision_mask = 0
-move_speed = null
 
 [node name="Ball" parent="." instance=ExtResource("3_lq3dq")]
 position = Vector2(633, 644)
@@ -108,27 +107,38 @@ text = "Press [ SPACE ] to Serve"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BoxContainer" type="BoxContainer" parent="UILayer/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_left = -374.0
+offset_bottom = 48.0
 grow_horizontal = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+
+[node name="BoxContainer" type="BoxContainer" parent="UILayer/Control/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UILayer/Control/BoxContainer"]
+[node name="LifeBar" type="TextureProgressBar" parent="UILayer/Control/MarginContainer/BoxContainer"]
+unique_name_in_owner = true
 texture_repeat = 2
 layout_mode = 2
 max_value = 3.0
+value = 3.0
 texture_under = SubResource("AtlasTexture_cfgx8")
-texture_progress = SubResource("AtlasTexture_sm64a")
+texture_progress = SubResource("AtlasTexture_elg3m")
 
-[node name="ScoreStaticLabel" type="Label" parent="UILayer/Control/BoxContainer"]
+[node name="ScoreStaticLabel" type="Label" parent="UILayer/Control/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Score: "
 
-[node name="Score" type="Label" parent="UILayer/Control/BoxContainer"]
+[node name="Score" type="Label" parent="UILayer/Control/MarginContainer/BoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "########"

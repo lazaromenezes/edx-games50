@@ -7,12 +7,15 @@ enum State{SERVE, PLAY}
 
 var _current_state: State = State.SERVE
 var _current_level: int = 0
+var _lifes: int = 3
 
 func _ready() -> void:
 	var screen_size = get_viewport_rect().size
 
 	_set_paddle_initial_position(screen_size)
 	_set_ball_initial_position(screen_size)
+
+	_update_life_bar()
 
 	_next_level()
 
@@ -43,6 +46,8 @@ func _set_ball_initial_position(screen_size: Vector2):
 	$Ball.initial_position = Vector2(initial_x, initial_y)
 
 func _on_bottom_body_exited(_body: Node2D) -> void:
+	_lifes -= 1
+	_update_life_bar()
 	_to_serve()
 
 func _to_serve():
@@ -53,3 +58,6 @@ func _to_serve():
 
 	%LevelDisplay/Level.text = LEVEL_DISPLAY % _current_level
 	%LevelDisplay.show()
+
+func _update_life_bar():
+	%LifeBar.value = _lifes
