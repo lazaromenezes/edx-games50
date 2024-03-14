@@ -25,14 +25,15 @@ func _physics_process(delta: float) -> void:
 			var bouncing_velocity = collision.get_normal()
 
 			if collider is Paddle:
-				_calculate_influence(collision, collider)
-				
 				position.y = initial_position.y
+				
+				if collision.get_collider_velocity() != Vector2.ZERO:
+					velocity.x += _calculate_influence(collision, collider)
+					
 			elif collider is Brick:
 				_increase_speed()
 
 			velocity = velocity.bounce(bouncing_velocity)
-
 
 func serve() -> void:
 	velocity.y = initial_speed * Vector2.UP.y
@@ -50,13 +51,10 @@ func _increase_speed():
 		velocity.y *= increase_factor
 		
 func _calculate_influence(collision, collider):
-	if collision.get_collider_velocity() != Vector2.ZERO:
-		var collider_size = collider.size.x
-		var collider_x = to_global(collider.position).x
-		var ball_x = to_global(position).x
-		
-		var influence_factor = abs(ball_x - collider_x) / (collider_size / 2)
-		
-		var influence = max_paddle_influence * influence_factor * collision.get_collider_velocity().normalized().x
-		
-		velocity.x += influence
+	var collider_size = collider.size.x
+	var collider_x = to_global(collider.position).x
+	var ball_x = to_global(position).x
+	
+	var influence_factor = abs(ball_x - collider_x) / (collider_size / 2)
+	
+	return max_paddle_influence * influence_factor * collision.get_collider_velocity().normalized().x

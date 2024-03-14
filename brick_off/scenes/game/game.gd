@@ -70,6 +70,7 @@ func _update_score():
 
 func _on_level_scored(points: int) -> void:
 	GameState.score += points
+	$Paddle.increase_speed()
 	_update_score()
 
 func _on_level_cleared() -> void:
