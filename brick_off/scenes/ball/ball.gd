@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 				
 				if collision.get_collider_velocity() != Vector2.ZERO:
 					velocity.x += _calculate_influence(collision, collider)
-					
+
 			elif collider is Brick:
 				_increase_speed()
 
