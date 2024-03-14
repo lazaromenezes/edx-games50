@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3xholis0g02v"]
+
+[ext_resource type="Script" path="res://scenes/high_scores/letter_entry.gd" id="1_jo3pf"]
+
+[node name="LetterEntry" type="VBoxContainer"]
+auto_translate_mode = 1
+script = ExtResource("1_jo3pf")
+
+[node name="Up" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Letter" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Down" type="Label" parent="."]
+auto_translate_mode = 1
+layout_mode = 2

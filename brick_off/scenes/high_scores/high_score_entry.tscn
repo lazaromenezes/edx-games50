@@ -1,46 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://5efnx5vg5vs8"]
+[gd_scene load_steps=4 format=3 uid="uid://sahmtnb2p5fc"]
 
-[ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="1_p4yj7"]
-[ext_resource type="Script" path="res://scenes/game_over/game_over.gd" id="2_r6ptb"]
+[ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="1_uqi7j"]
+[ext_resource type="Script" path="res://scenes/high_scores/high_score_entry.gd" id="2_folgw"]
+[ext_resource type="PackedScene" uid="uid://clig3dkxklic2" path="res://scenes/high_scores/name_entry.tscn" id="2_n4krx"]
 
-[node name="GameOver" type="Control"]
+[node name="HighScoreEntry" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_p4yj7")
-script = ExtResource("2_r6ptb")
+theme = ExtResource("1_uqi7j")
+script = ExtResource("2_folgw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -292.0
+offset_top = -206.5
+offset_right = 292.0
+offset_bottom = 206.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 75
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
-text = "GAME OVER"
+text = "ENTER YOUR NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="NameEntry" parent="VBoxContainer" instance=ExtResource("2_n4krx")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 15
 
 [node name="ScoreLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
@@ -52,25 +65,16 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "###"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="NewHighScore" type="Label" parent="VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.847059, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "NEW HIGH SCORE!"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="StartButton" type="Label" parent="VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
-text = "Press [ SPACE ] to continue"
+text = "Press [SPACE] to continue"
 horizontal_alignment = 1
-vertical_alignment = 1

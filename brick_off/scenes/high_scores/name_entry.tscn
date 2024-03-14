@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://clig3dkxklic2"]
+
+[ext_resource type="PackedScene" uid="uid://d3xholis0g02v" path="res://scenes/high_scores/letter_entry.tscn" id="1_0tk4f"]
+[ext_resource type="Script" path="res://scenes/high_scores/name_entry.gd" id="1_q8qsj"]
+
+[node name="NameEntry" type="HBoxContainer"]
+auto_translate_mode = 1
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+script = ExtResource("1_q8qsj")
+
+[node name="LetterEntry" parent="." instance=ExtResource("1_0tk4f")]
+layout_mode = 2
+
+[node name="LetterEntry2" parent="." instance=ExtResource("1_0tk4f")]
+layout_mode = 2
+
+[node name="LetterEntry3" parent="." instance=ExtResource("1_0tk4f")]
+layout_mode = 2
