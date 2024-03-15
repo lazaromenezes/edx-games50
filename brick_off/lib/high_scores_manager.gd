@@ -31,8 +31,8 @@ func _reducer(acc, hs):
 func is_new_high_score(score):
 	return score > high_scores[-1].score
 
-func save_score(name, score):
-	var new_entry = HighScoreEntry.new(name, score)
+func save_score(_name, _score):
+	var new_entry = HighScoreEntry.new(_name, _score)
 	
 	for i in high_scores.size():
 		if high_scores[i].score < new_entry.score:

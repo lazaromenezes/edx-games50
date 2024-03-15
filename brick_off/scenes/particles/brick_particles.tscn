@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cggpmt038aavs"]
+
+[ext_resource type="Texture2D" uid="uid://cvn6s81wkl2pk" path="res://assets/particle.png" id="1_y8j4b"]
+[ext_resource type="Script" path="res://scenes/particles/brick_particles.gd" id="2_jqnn5"]
+
+[sub_resource type="Curve" id="Curve_eeniy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.515069, 0.537194), -1.74548, -1.74548, 0, 0, Vector2(0.99726, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cey5c"]
+width = 32
+curve = SubResource("Curve_eeniy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v3uqk"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(80, 0, 24)
+gravity = Vector3(0, 98, 0)
+alpha_curve = SubResource("CurveTexture_cey5c")
+
+[node name="BrickParticles" type="GPUParticles2D"]
+position = Vector2(0, -12)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_v3uqk")
+texture = ExtResource("1_y8j4b")
+one_shot = true
+explosiveness = 0.54
+randomness = 0.25
+visibility_rect = Rect2(0, 0, 0, 0)
+script = ExtResource("2_jqnn5")

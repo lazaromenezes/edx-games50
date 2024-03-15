@@ -3,17 +3,15 @@ class_name Brick
 
 signal hit(brick: Brick)
 
-const MAX_COLORS: int = 5
-const MAX_LAYERS: int = 4
-
 const COLOR_POINTS: int = 10
 const LAYER_POINTS: int = 100
 
 var size: Vector2
 var points: int:
 	get():
-		var layer_points = layer / MAX_LAYERS * LAYER_POINTS
-		var color_points = (layer + 1) % MAX_COLORS * COLOR_POINTS
+		@warning_ignore("integer_division")
+		var layer_points = layer / Constants.MAX_LAYERS * LAYER_POINTS
+		var color_points = (layer + 1) % Constants.MAX_COLORS * COLOR_POINTS
 		
 		return layer_points + color_points
 
@@ -40,9 +38,10 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	else:
 		layer -= 1
 		_render_brick_texture()
-	
+
 func _render_brick_texture() -> void:
-	var brick_set = layer / MAX_LAYERS
-	var set_layer = layer % MAX_COLORS
+	@warning_ignore("integer_division")
+	var brick_set = layer / Constants.MAX_LAYERS
+	var set_layer = layer % Constants.MAX_COLORS
 	
 	$Sprite2D.texture = brick_sets[brick_set].layers[set_layer]

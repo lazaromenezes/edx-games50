@@ -31,5 +31,5 @@ func _move_back():
 func get_name_entry():
 	return _letter_entries\
 	.map(func (l): return char(l.letter))\
-	.reduce(func (name, letter): return name + letter, "")
+	.reduce(func (_name, letter): return _name + letter, "")
 	

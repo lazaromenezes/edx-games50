@@ -17,7 +17,7 @@ size = Vector2(190, 94)
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 script = ExtResource("1_n1svm")
-brick_sets = Array[Object]([ExtResource("2_7nvmj"), ExtResource("3_vtudh"), ExtResource("4_hgver"), ExtResource("5_fij48")])
+brick_sets = Array[Resource("res://resources/bricks/brick_set.gd")]([ExtResource("2_7nvmj"), ExtResource("3_vtudh"), ExtResource("4_hgver"), ExtResource("5_fij48")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pjebh")
@@ -26,10 +26,12 @@ texture = ExtResource("1_pjebh")
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_yae5b")
 debug_color = Color(0.965129, 0.0326328, 0.22373, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_g6xic")
 
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
