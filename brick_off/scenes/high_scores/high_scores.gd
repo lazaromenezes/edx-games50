@@ -9,5 +9,5 @@ func _ready() -> void:
 		%ScoreTable.add_child(score_row)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") or event.is_action("ui_accept"):
+	if event.is_action_pressed("ui_accept"):
 		SceneManager.change_to(SceneManager.TITLE)
