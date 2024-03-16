@@ -52,7 +52,10 @@ func _on_bottom_body_exited(_body: Node2D) -> void:
 	_lifes -= 1
 	SfxPlayer.ball_lost.play()
 	_update_life_bar()
-	_to_serve() if _lifes > 0 else SceneManager.change_to(SceneManager.GAME_OVER)
+	if _lifes > 0:
+		_to_serve()
+	else:
+		SceneManager.change_to(SceneManager.GAME_OVER)
 
 func _to_serve():
 	$Ball.reset()

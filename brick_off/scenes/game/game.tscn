@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5y8k8fa6p0da"]
+[gd_scene load_steps=14 format=3 uid="uid://b5y8k8fa6p0da"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_om1mc"]
+[ext_resource type="Texture2D" uid="uid://bqcneu1pbd3mx" path="res://assets/background/bg.jpg" id="2_a7ulu"]
 [ext_resource type="PackedScene" uid="uid://dtfitu5new3yh" path="res://scenes/paddle/paddle.tscn" id="2_tbegc"]
 [ext_resource type="PackedScene" uid="uid://dfudn4jbseg8b" path="res://scenes/ball/ball.tscn" id="3_lq3dq"]
 [ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="4_ellya"]
@@ -30,6 +31,21 @@ region = Rect2(0, 0, 150, 48)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_om1mc")
 metadata/_edit_vertical_guides_ = [1280.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+auto_translate_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1191.83
+offset_bottom = 5.82959
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a7ulu")
+expand_mode = 5
 
 [node name="Paddle" parent="." instance=ExtResource("2_tbegc")]
 position = Vector2(632, 681)
