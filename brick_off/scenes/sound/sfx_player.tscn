@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://runtm1lbu8ww"]
+
+[ext_resource type="Script" path="res://scenes/sound/sfx_player.gd" id="1_ifgal"]
+[ext_resource type="AudioStream" uid="uid://b8o08srpxh6pq" path="res://assets/sfx/brick_hit.wav" id="1_thr4v"]
+[ext_resource type="AudioStream" uid="uid://d188iffyhpn6b" path="res://assets/sfx/wall_hit.wav" id="2_bae2a"]
+[ext_resource type="AudioStream" uid="uid://b6mlb2jdqgqe1" path="res://assets/sfx/paddle_hit.wav" id="3_wk31d"]
+[ext_resource type="AudioStream" uid="uid://bnojls23o1vvg" path="res://assets/sfx/brick_destroy.wav" id="5_6t3o5"]
+[ext_resource type="AudioStream" uid="uid://mxf2wcck454a" path="res://assets/sfx/ball_lost.wav" id="6_vcleh"]
+[ext_resource type="AudioStream" uid="uid://dx7yi4w5ns41" path="res://assets/sfx/new_high_score.wav" id="7_7d6er"]
+
+[node name="SfxPlayer" type="Node"]
+script = ExtResource("1_ifgal")
+
+[node name="BrickHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_thr4v")
+bus = &"Hit_SFX"
+
+[node name="WallHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bae2a")
+bus = &"Hit_SFX"
+
+[node name="PaddleHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wk31d")
+bus = &"Hit_SFX"
+
+[node name="BrickDestroy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6t3o5")
+bus = &"Hit_SFX"
+
+[node name="BallLost" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vcleh")
+bus = &"SFX"
+
+[node name="NewHighScore" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7d6er")
+bus = &"SFX"

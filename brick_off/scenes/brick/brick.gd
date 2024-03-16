@@ -34,6 +34,7 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	hit.emit(self)
 	
 	if layer == 0:
+		SfxPlayer.brick_destroy.play()
 		queue_free()
 	else:
 		layer -= 1

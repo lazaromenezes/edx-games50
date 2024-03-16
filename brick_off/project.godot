@@ -21,6 +21,8 @@ config/icon="res://icon.svg"
 SceneManager="*res://lib/scene_manager.gd"
 GameState="*res://lib/game_state.gd"
 HighScoresManager="*res://lib/high_scores_manager.gd"
+MusicPlayer="*res://scenes/sound/music_player.tscn"
+SfxPlayer="*res://scenes/sound/sfx_player.tscn"
 
 [display]
 

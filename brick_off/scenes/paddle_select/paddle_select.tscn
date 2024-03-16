@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5certv6f1xya"]
+[gd_scene load_steps=9 format=3 uid="uid://c5certv6f1xya"]
 
 [ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="1_1l5wu"]
 [ext_resource type="Script" path="res://scenes/paddle_select/paddle_select.gd" id="2_jjj00"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://btqx8iwk5s3hm" path="res://resources/paddles/paddle_green_medium.tres" id="4_ej8px"]
 [ext_resource type="Texture2D" uid="uid://dnufk1njqbbjh" path="res://resources/paddles/paddle_purple_medium.tres" id="5_ognpu"]
 [ext_resource type="Texture2D" uid="uid://dfq5iup8e65ed" path="res://resources/paddles/paddle_red_medium.tres" id="6_pottf"]
+[ext_resource type="AudioStream" uid="uid://co1e3kch3pho6" path="res://assets/sfx/select_paddle.wav" id="7_wesiv"]
+[ext_resource type="AudioStream" uid="uid://dqwn6mr3ufnlv" path="res://assets/sfx/invalid_selection.wav" id="8_pfbc1"]
 
 [node name="PaddleSelect" type="Control"]
 layout_mode = 3
@@ -80,6 +82,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "Press Enter to Play"
 horizontal_alignment = 1
+
+[node name="SelectionMove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wesiv")
+bus = &"UI_SFX"
+
+[node name="InvalidSelection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_pfbc1")
+bus = &"UI_SFX"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]

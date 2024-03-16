@@ -25,13 +25,17 @@ func _physics_process(delta: float) -> void:
 			var bouncing_velocity = collision.get_normal()
 
 			if collider is Paddle:
+				SfxPlayer.paddle_hit.play()
 				position.y = initial_position.y
 				
 				if collision.get_collider_velocity() != Vector2.ZERO:
 					velocity.x += _calculate_influence(collision, collider)
 
 			elif collider is Brick:
+				SfxPlayer.brick_hit.play()
 				_increase_speed()
+			else:
+				SfxPlayer.wall_hit.play()
 
 			velocity = velocity.bounce(bouncing_velocity)
 

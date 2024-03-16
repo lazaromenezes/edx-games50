@@ -4,7 +4,9 @@ var scoreRowScene: PackedScene = preload("res://scenes/high_scores/high_score_ro
 
 func _ready() -> void:
 	%Score.text = str(GameState.score)
-	%NewHighScore.visible = HighScoresManager.is_new_high_score(GameState.score)
+	if HighScoresManager.is_new_high_score(GameState.score):
+		%NewHighScore.visible = true
+		SfxPlayer.new_high_score.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):

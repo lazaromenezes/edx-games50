@@ -10,10 +10,16 @@ var _current_paddle: int = 0:
 func _on_right_button_pressed() -> void:
 	if _current_paddle < available_paddles.size() - 1:
 		_current_paddle += 1
+		$SelectionMove.play()
+	else:
+		$InvalidSelection.play()
 
 func _on_left_button_pressed() -> void:
 	if _current_paddle > 0:
 		_current_paddle -= 1
+		$SelectionMove.play()
+	else:
+		$InvalidSelection.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
