@@ -38,7 +38,7 @@ func spawn_bricks(level: int = 1):
 	@warning_ignore("integer_division")
 	var max_color = min(MAX_COLORS - 1, level / MAX_COLORS + 2)
 	
-	var max_brick_layer = max_layer * (MAX_COLORS - 1) + max_color
+	var max_brick_layer = max_layer * MAX_COLORS + max_color
 	var grid_size = _create_random_grid()
 	
 	var pattern = patterns.pick_random()

@@ -42,7 +42,7 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 func _render_brick_texture() -> void:
 	@warning_ignore("integer_division")
-	var brick_set = layer / Constants.MAX_LAYERS
-	var set_layer = layer % Constants.MAX_COLORS
+	var brick_set = layer / Constants.MAX_COLORS
+	var brick_color = layer % Constants.MAX_COLORS
 	
-	$Sprite2D.texture = brick_sets[brick_set].layers[set_layer]
+	$Sprite2D.texture = brick_sets[brick_set].layers[brick_color]
