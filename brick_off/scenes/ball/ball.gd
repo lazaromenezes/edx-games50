@@ -32,7 +32,6 @@ func _physics_process(delta: float) -> void:
 					velocity.x += _calculate_influence(collision, collider)
 
 			elif collider is Brick:
-				SfxPlayer.brick_hit.play()
 				_increase_speed()
 			else:
 				SfxPlayer.wall_hit.play()

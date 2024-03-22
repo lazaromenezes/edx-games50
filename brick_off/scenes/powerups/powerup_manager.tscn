@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0n0m7a2f7axy"]
+
+[ext_resource type="Script" path="res://scenes/powerups/powerup_manager.gd" id="1_enp4r"]
+[ext_resource type="Resource" uid="uid://ktlw4vf82oui" path="res://resources/powerups/kinds/decrease.tres" id="2_mkra3"]
+[ext_resource type="Resource" uid="uid://235xq0qtfqm6" path="res://resources/powerups/kinds/increase.tres" id="3_ybfhw"]
+
+[node name="PowerUps" type="Node2D"]
+script = ExtResource("1_enp4r")
+available_powerups = Array[Resource("res://resources/powerups/powerup_kind.gd")]([ExtResource("2_mkra3"), ExtResource("3_ybfhw")])
+drop_chance = 99.0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgxfs2ve41cw7"]
+[gd_scene load_steps=3 format=3 uid="uid://cgxfs2ve41cw7"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_swmw6"]
+[ext_resource type="PackedScene" uid="uid://b0n0m7a2f7axy" path="res://scenes/powerups/powerup_manager.tscn" id="2_3e70s"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_swmw6")
@@ -8,3 +9,5 @@ script = ExtResource("1_swmw6")
 [node name="Bricks" type="Node2D" parent="."]
 
 [node name="Particles" type="Node2D" parent="."]
+
+[node name="PowerUps" parent="." instance=ExtResource("2_3e70s")]

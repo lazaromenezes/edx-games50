@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerupKind" load_steps=3 format=3 uid="uid://ktlw4vf82oui"]
+
+[ext_resource type="Script" path="res://resources/powerups/powerup_kind.gd" id="1_8k53e"]
+[ext_resource type="Texture2D" uid="uid://ct6ywb1owjni6" path="res://resources/powerups/decrease.tres" id="2_o8f6p"]
+
+[resource]
+script = ExtResource("1_8k53e")
+texture = ExtResource("2_o8f6p")
+cool_down = 3.0
+effect = "$Paddle.increase()"

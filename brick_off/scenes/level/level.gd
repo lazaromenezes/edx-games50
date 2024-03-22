@@ -58,7 +58,7 @@ func _create_random_grid() -> Vector2i:
 func _on_brick_added(grid_size: Vector2i, row: int, column: int, brick_layer: int):
 	var brick = _brickScene.instantiate()
 	brick.hit.connect(_on_brick_hit)
-	brick.tree_exited.connect(_check_clearence)
+	brick.destroyed.connect(_on_brick_destroyed)
 	brick.layer = brick_layer
 
 	$Bricks.add_child(brick)
@@ -67,12 +67,16 @@ func _on_brick_added(grid_size: Vector2i, row: int, column: int, brick_layer: in
 func _on_brick_hit(brick: Brick):
 	scored.emit(brick.points)
 	_emit_particles(brick)
+	
+func _on_brick_destroyed(brick: Brick):
+	if $Bricks.get_child_count() == 1:
+		cleared.emit()
+	else:
+		$PowerUps.draw_powerup(brick.position)
 
 func _emit_particles(brick: Brick):
 	var particles = _brickParticleScene.instantiate()
 	$Particles.add_child(particles)
 	particles.emit_for(brick)
 
-func _check_clearence() -> void:
-	if $Bricks.get_child_count() == 0:
-		cleared.emit()
+

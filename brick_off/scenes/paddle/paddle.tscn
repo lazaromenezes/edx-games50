@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtfitu5new3yh"]
+[gd_scene load_steps=8 format=3 uid="uid://dtfitu5new3yh"]
 
 [ext_resource type="Script" path="res://scenes/paddle/paddle.gd" id="1_q2exg"]
-[ext_resource type="Texture2D" uid="uid://cpm38l8ldc0xn" path="res://resources/paddles/paddle_blue_medium.tres" id="1_ty4xw"]
-[ext_resource type="Texture2D" uid="uid://btqx8iwk5s3hm" path="res://resources/paddles/paddle_green_medium.tres" id="3_0nk8u"]
-[ext_resource type="Texture2D" uid="uid://dnufk1njqbbjh" path="res://resources/paddles/paddle_purple_medium.tres" id="4_mueo2"]
-[ext_resource type="Texture2D" uid="uid://dfq5iup8e65ed" path="res://resources/paddles/paddle_red_medium.tres" id="5_r5dq0"]
+[ext_resource type="Texture2D" uid="uid://cpm38l8ldc0xn" path="res://resources/paddles/blue/paddle_blue_medium.tres" id="1_ty4xw"]
+[ext_resource type="Resource" uid="uid://lqg3pahqm5wl" path="res://resources/paddles/blue/blue_paddle.tres" id="2_80vd4"]
+[ext_resource type="Resource" uid="uid://cq1wryga8p2ni" path="res://resources/paddles/green/green_paddle.tres" id="3_5mnqf"]
+[ext_resource type="Resource" uid="uid://bdl8h8tmsnctb" path="res://resources/paddles/purple/purple_paddle.tres" id="4_ev8wo"]
+[ext_resource type="Resource" uid="uid://g8hqxyq20alo" path="res://resources/paddles/red/red_paddle.tres" id="5_2rp2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0kyky"]
 size = Vector2(384, 96)
@@ -13,7 +14,7 @@ size = Vector2(384, 96)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_q2exg")
-available_paddles = Array[AtlasTexture]([ExtResource("1_ty4xw"), ExtResource("3_0nk8u"), ExtResource("4_mueo2"), ExtResource("5_r5dq0")])
+available_paddles = Array[Resource("res://resources/paddles/paddle_set.gd")]([ExtResource("2_80vd4"), ExtResource("3_5mnqf"), ExtResource("4_ev8wo"), ExtResource("5_2rp2x")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ty4xw")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PaddleSet" load_steps=6 format=3 uid="uid://g8hqxyq20alo"]
+
+[ext_resource type="Script" path="res://resources/paddles/paddle_set.gd" id="1_gc8f5"]
+[ext_resource type="Texture2D" uid="uid://djoicwkk2arni" path="res://resources/paddles/red/paddle_red_small.tres" id="1_qy6br"]
+[ext_resource type="Texture2D" uid="uid://dfq5iup8e65ed" path="res://resources/paddles/red/paddle_red_medium.tres" id="2_hvak1"]
+[ext_resource type="Texture2D" uid="uid://cg0b2i6yaa8a6" path="res://resources/paddles/red/paddle_red_large.tres" id="3_q3jqu"]
+[ext_resource type="Texture2D" uid="uid://bkalmgdhng5p1" path="res://resources/paddles/red/paddle_red_extra_large.tres" id="4_e7jfs"]
+
+[resource]
+script = ExtResource("1_gc8f5")
+paddle_size = Array[AtlasTexture]([ExtResource("1_qy6br"), ExtResource("2_hvak1"), ExtResource("3_q3jqu"), ExtResource("4_e7jfs")])

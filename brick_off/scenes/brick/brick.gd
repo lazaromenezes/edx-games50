@@ -2,6 +2,7 @@ extends StaticBody2D
 class_name Brick
 
 signal hit(brick: Brick)
+signal destroyed(brick: Brick)
 
 const COLOR_POINTS: int = 10
 const LAYER_POINTS: int = 100
@@ -35,8 +36,10 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	
 	if layer == 0:
 		SfxPlayer.brick_destroy.play()
+		destroyed.emit(self)
 		queue_free()
 	else:
+		SfxPlayer.brick_hit.play()
 		layer -= 1
 		_render_brick_texture()
 

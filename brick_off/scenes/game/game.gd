@@ -25,10 +25,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		SceneManager.change_to(SceneManager.TITLE)
 
 func _input(event: InputEvent) -> void:
-	if _current_state == State.SERVE and event.is_action_pressed("serve"):		
+	if _current_state == State.SERVE and event.is_action_pressed("serve"):
 		%LevelDisplay.hide()
 		_current_state = State.PLAY
 		$Ball.serve()
+		
+	if _current_state == State.PLAY and OS.has_feature("editor"):
+		if event.is_action_pressed("ui_page_up"):
+			$Paddle.increase()
+		elif event.is_action_pressed("ui_page_down"):
+			$Paddle.decrease()
 
 func _next_level():
 	_current_level += 1
@@ -79,3 +85,11 @@ func _on_level_scored(points: int) -> void:
 
 func _on_level_cleared() -> void:
 	_next_level()
+
+func _on_paddle_powerup_picked(kind: PowerupKind) -> void:
+	print(kind)
+	
+	var effectScript: GDScript = GDScript.new()
+	effectScript.source_code = kind.effect
+	effectScript.reload()
+	

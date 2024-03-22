@@ -84,6 +84,7 @@ shape = SubResource("RectangleShape2D_33n8t")
 
 [node name="Bottom" type="Area2D" parent="Walls"]
 position = Vector2(640, 720.5)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom"]
 shape = SubResource("RectangleShape2D_s654b")
@@ -164,6 +165,7 @@ text = "########"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[connection signal="body_exited" from="Walls/Bottom" to="." method="_on_bottom_body_exited"]
+[connection signal="powerup_picked" from="Paddle" to="." method="_on_paddle_powerup_picked"]
+[connection signal="area_exited" from="Walls/Bottom" to="." method="_on_bottom_area_exited"]
 [connection signal="cleared" from="Level" to="." method="_on_level_cleared"]
 [connection signal="scored" from="Level" to="." method="_on_level_scored"]
