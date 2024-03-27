@@ -16,3 +16,4 @@ script = ExtResource("1_swmw6")
 
 [node name="PowerUps" parent="." instance=ExtResource("2_3e70s")]
 available_powerups = Array[Resource("res://resources/powerups/powerup_kind.gd")]([ExtResource("3_f6sna"), ExtResource("4_k6ld4"), ExtResource("5_em7u8"), ExtResource("6_5s6a6")])
+drop_chance = 20.0
