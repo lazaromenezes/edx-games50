@@ -11,5 +11,4 @@ script/source = "func apply(game):
 [resource]
 script = ExtResource("1_sd68h")
 texture = ExtResource("2_eafla")
-cool_down = 3.0
 effect_script = SubResource("GDScript_4frqk")

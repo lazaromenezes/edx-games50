@@ -28,6 +28,7 @@ func _ready() -> void:
 	_set_paddle_initial_position()
 	
 	GameState.score_updated.connect(_update_score)
+	GameState.score = 0
 
 	_next_level()
 
