@@ -2,6 +2,11 @@ extends Resource
 class_name PowerupKind
 
 @export var texture: Texture2D
-@export var cool_down: float = 3
+@export var effect_script: GDScript
 
-@export_multiline var effect: String
+func apply_effect(game):
+	if not effect_script:
+		return
+		
+	var effect = effect_script.new()
+	effect.apply(game)

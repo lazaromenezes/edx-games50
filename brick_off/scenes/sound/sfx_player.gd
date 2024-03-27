@@ -6,3 +6,4 @@ extends Node
 @onready var brick_destroy = $BrickDestroy
 @onready var ball_lost = $BallLost
 @onready var new_high_score = $NewHighScore
+@onready var powerup = $Powerup

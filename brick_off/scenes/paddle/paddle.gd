@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
 	position.x = clamp(new_position, _min_position, _max_position)
 
 func reset() -> void:
+	_current_size = PaddleSize.MEDIUM
 	move_speed = initial_speed
 	position = initial_position
 

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgxfs2ve41cw7"]
+[gd_scene load_steps=7 format=3 uid="uid://cgxfs2ve41cw7"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_swmw6"]
 [ext_resource type="PackedScene" uid="uid://b0n0m7a2f7axy" path="res://scenes/powerups/powerup_manager.tscn" id="2_3e70s"]
+[ext_resource type="Resource" uid="uid://ktlw4vf82oui" path="res://resources/powerups/kinds/decrease.tres" id="3_f6sna"]
+[ext_resource type="Resource" uid="uid://235xq0qtfqm6" path="res://resources/powerups/kinds/increase.tres" id="4_k6ld4"]
+[ext_resource type="Resource" uid="uid://325vgbf2e22b" path="res://resources/powerups/kinds/recover.tres" id="5_em7u8"]
+[ext_resource type="Resource" uid="uid://bqm0wxbmpu7ny" path="res://resources/powerups/kinds/extra_balls.tres" id="6_5s6a6"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_swmw6")
@@ -11,3 +15,4 @@ script = ExtResource("1_swmw6")
 [node name="Particles" type="Node2D" parent="."]
 
 [node name="PowerUps" parent="." instance=ExtResource("2_3e70s")]
+available_powerups = Array[Resource("res://resources/powerups/powerup_kind.gd")]([ExtResource("3_f6sna"), ExtResource("4_k6ld4"), ExtResource("5_em7u8"), ExtResource("6_5s6a6")])

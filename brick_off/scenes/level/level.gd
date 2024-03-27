@@ -79,4 +79,7 @@ func _emit_particles(brick: Brick):
 	$Particles.add_child(particles)
 	particles.emit_for(brick)
 
+func clear_all_powerups():
+	for powerup in $PowerUps.get_children():
+		powerup.queue_free()
 

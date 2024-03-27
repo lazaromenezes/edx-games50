@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5y8k8fa6p0da"]
+[gd_scene load_steps=13 format=3 uid="uid://b5y8k8fa6p0da"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_om1mc"]
 [ext_resource type="Texture2D" uid="uid://bqcneu1pbd3mx" path="res://assets/background/bg.jpg" id="2_a7ulu"]
 [ext_resource type="PackedScene" uid="uid://dtfitu5new3yh" path="res://scenes/paddle/paddle.tscn" id="2_tbegc"]
-[ext_resource type="PackedScene" uid="uid://dfudn4jbseg8b" path="res://scenes/ball/ball.tscn" id="3_lq3dq"]
 [ext_resource type="Theme" uid="uid://c0j68svnqomy8" path="res://resources/main_theme.tres" id="4_ellya"]
 [ext_resource type="PackedScene" uid="uid://cgxfs2ve41cw7" path="res://scenes/level/level.tscn" id="4_innyc"]
 [ext_resource type="Texture2D" uid="uid://rxpul5ek7pfq" path="res://assets/hearts/heart_48x48.png" id="5_74f5x"]
@@ -52,9 +51,7 @@ position = Vector2(632, 681)
 scale = Vector2(0.5, 0.5)
 collision_mask = 0
 
-[node name="Ball" parent="." instance=ExtResource("3_lq3dq")]
-position = Vector2(633, 644)
-scale = Vector2(0.5, 0.5)
+[node name="Balls" type="Node2D" parent="."]
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -166,6 +163,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [connection signal="powerup_picked" from="Paddle" to="." method="_on_paddle_powerup_picked"]
-[connection signal="area_exited" from="Walls/Bottom" to="." method="_on_bottom_area_exited"]
+[connection signal="body_exited" from="Walls/Bottom" to="." method="_on_bottom_body_exited"]
 [connection signal="cleared" from="Level" to="." method="_on_level_cleared"]
 [connection signal="scored" from="Level" to="." method="_on_level_scored"]

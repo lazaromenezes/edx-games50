@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 var _is_served: bool = false
 var initial_position: Vector2
-var size: Vector2
+
+var size: Vector2:
+	get():
+		return $Sprite2D.texture.region.size * scale
 
 @export var max_paddle_influence: float = 50
 @export var initial_speed: float = 300
@@ -11,7 +14,7 @@ var size: Vector2
 @export var available_balls: Array[AtlasTexture]
 
 func _ready() -> void:
-	size = $Sprite2D.texture.region.size * scale
+	#size = 
 
 	$Sprite2D.texture = available_balls[GameState.selected_color]
 
@@ -52,7 +55,7 @@ func reset() -> void:
 func _increase_speed():
 	if abs(velocity.y) < max_speed:
 		velocity.y *= increase_factor
-		
+
 func _calculate_influence(collision, collider):
 	var collider_size = collider.size.x
 	var collider_x = to_global(collider.position).x

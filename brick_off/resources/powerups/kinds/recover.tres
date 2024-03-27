@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PowerupKind" load_steps=4 format=3 uid="uid://325vgbf2e22b"]
+
+[ext_resource type="Script" path="res://resources/powerups/powerup_kind.gd" id="1_sd68h"]
+[ext_resource type="Texture2D" uid="uid://chtxpmrggtqgt" path="res://resources/powerups/recover.tres" id="2_eafla"]
+
+[sub_resource type="GDScript" id="GDScript_4frqk"]
+script/source = "func apply(game):
+	game.recover_life()
+"
+
+[resource]
+script = ExtResource("1_sd68h")
+texture = ExtResource("2_eafla")
+cool_down = 3.0
+effect_script = SubResource("GDScript_4frqk")
