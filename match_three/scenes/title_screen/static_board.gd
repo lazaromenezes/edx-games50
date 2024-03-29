@@ -10,7 +10,9 @@ func _ready() -> void:
 			
 	var total_size = board_size * TileManager.TILE_SIZE
 	
+	@warning_ignore("integer_division")
 	position.x = get_viewport_rect().size.x / 2.0 - total_size.x / 2 + TileManager.TILE_SIZE / 2
+	@warning_ignore("integer_division")
 	position.y = get_viewport_rect().size.y / 2.0 - total_size.y / 2 + TileManager.TILE_SIZE / 2
 
 func _add_sprite(tile, row, column) -> void:
