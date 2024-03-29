@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxjyeoijeky33"]
+
+[ext_resource type="Script" path="res://scenes/scrolling_background/scrolling_background.gd" id="1_o1o5i"]
+[ext_resource type="Texture2D" uid="uid://cxw8duk7chur6" path="res://assets/background.png" id="1_tqnsn"]
+
+[node name="Background" type="CanvasLayer"]
+layer = -5
+script = ExtResource("1_o1o5i")
+
+[node name="BackgroundImage" type="Sprite2D" parent="."]
+position = Vector2(512, 150)
+texture = ExtResource("1_tqnsn")

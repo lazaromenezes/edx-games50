@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://byfkftjxut00j"]
+
+[ext_resource type="FontFile" uid="uid://dblqi8tbpx0id" path="res://assets/font/PressStart2P-Regular.ttf" id="1_oo8bp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aigy"]
+bg_color = Color(1, 1, 1, 0.501961)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[resource]
+default_font = ExtResource("1_oo8bp")
+Button/colors/font_color = Color(0.188235, 0.376471, 0.509804, 1)
+Button/colors/font_focus_color = Color(0.388235, 0.607843, 1, 1)
+Button/colors/font_hover_color = Color(0.388235, 0.607843, 1, 1)
+Button/colors/font_hover_pressed_color = Color(0.529536, 0.700724, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 5
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_8aigy")

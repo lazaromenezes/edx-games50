@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3 uid="uid://jn3bimaevemh"]
+
+[ext_resource type="Script" path="res://scenes/title_banner/title_bannertscn.gd" id="1_bk3hv"]
+
+[node name="TitleBanner" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_bk3hv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="Letters" type="HBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -17.0
+offset_right = 62.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="M" type="Label" parent="Letters"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.576471)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "M"
+
+[node name="A" type="Label" parent="Letters"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.576471)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "A"
+
+[node name="T" type="Label" parent="Letters"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.576471)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "T"
+
+[node name="C" type="Label" parent="Letters"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.576471)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "C"
+
+[node name="H" type="Label" parent="Letters"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.576471)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "H"
+
+[node name="3" type="Label" parent="Letters"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.576471)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = " 3"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

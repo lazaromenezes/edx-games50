@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://rdlkwc2yvx2x"]
+
+[ext_resource type="PackedScene" uid="uid://bxjyeoijeky33" path="res://scenes/scrolling_background/scrolling_background.tscn" id="1_gkekp"]
+[ext_resource type="Script" path="res://scenes/title_screen/static_board.gd" id="2_lohbl"]
+[ext_resource type="Theme" uid="uid://byfkftjxut00j" path="res://resources/main_theme.tres" id="3_mgjks"]
+[ext_resource type="PackedScene" uid="uid://jn3bimaevemh" path="res://scenes/title_banner/title_bannertscn.tscn" id="4_pgrtf"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_8s41y"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_3dklv"]
+events = [SubResource("InputEventAction_8s41y")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_l56dp"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_71d5r"]
+events = [SubResource("InputEventAction_l56dp")]
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_gkekp")]
+
+[node name="StaticBoard" type="CanvasLayer" parent="."]
+
+[node name="StaticBoard" type="Node2D" parent="StaticBoard"]
+script = ExtResource("2_lohbl")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_mgjks")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Panel" type="PanelContainer" parent="UILayer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TitleBanner" parent="UILayer/Control/VBoxContainer/Panel" instance=ExtResource("4_pgrtf")]
+layout_mode = 2
+
+[node name="Panel2" type="PanelContainer" parent="UILayer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Control/VBoxContainer/Panel2"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="UILayer/Control/VBoxContainer/Panel2/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_type_variation = &"FlatButton"
+theme_override_constants/outline_size = 5
+shortcut = SubResource("Shortcut_3dklv")
+text = "Start"
+
+[node name="Quit" type="Button" parent="UILayer/Control/VBoxContainer/Panel2/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_type_variation = &"FlatButton"
+shortcut = SubResource("Shortcut_71d5r")
+text = "Quit Game"
