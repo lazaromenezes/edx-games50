@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="match_three"
+config/tags=PackedStringArray("edx_games_50", "study", "v4.3")
 run/main_scene="res://scenes/title_screen/title_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://lib/scene_manager.gd"
 
 [display]
 

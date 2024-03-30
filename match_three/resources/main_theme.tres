@@ -1,8 +1,17 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://byfkftjxut00j"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://byfkftjxut00j"]
 
 [ext_resource type="FontFile" uid="uid://dblqi8tbpx0id" path="res://assets/font/PressStart2P-Regular.ttf" id="1_oo8bp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aigy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4f2dp"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_meed2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpn86"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
 bg_color = Color(1, 1, 1, 0.501961)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -11,6 +20,8 @@ corner_radius_bottom_left = 6
 
 [resource]
 default_font = ExtResource("1_oo8bp")
+Banner/base_type = &"PanelContainer"
+Banner/styles/panel = SubResource("StyleBoxFlat_4f2dp")
 Button/colors/font_color = Color(0.188235, 0.376471, 0.509804, 1)
 Button/colors/font_focus_color = Color(0.388235, 0.607843, 1, 1)
 Button/colors/font_hover_color = Color(0.388235, 0.607843, 1, 1)
@@ -18,4 +29,13 @@ Button/colors/font_hover_pressed_color = Color(0.529536, 0.700724, 1, 1)
 Button/colors/font_outline_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/constants/outline_size = 5
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_8aigy")
+Label/colors/font_color = Color(0.188235, 0.376471, 0.509804, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 5
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/styles/normal = SubResource("StyleBoxEmpty_meed2")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_rpn86")

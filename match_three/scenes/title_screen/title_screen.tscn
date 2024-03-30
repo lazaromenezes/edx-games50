@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://rdlkwc2yvx2x"]
+[gd_scene load_steps=10 format=3 uid="uid://rdlkwc2yvx2x"]
 
-[ext_resource type="PackedScene" uid="uid://bxjyeoijeky33" path="res://scenes/scrolling_background/scrolling_background.tscn" id="1_gkekp"]
+[ext_resource type="PackedScene" uid="uid://bxjyeoijeky33" path="res://scenes/background/background.tscn" id="1_gkekp"]
+[ext_resource type="Script" path="res://scenes/title_screen/title_screen.gd" id="1_jehc2"]
 [ext_resource type="Script" path="res://scenes/title_screen/static_board.gd" id="2_lohbl"]
 [ext_resource type="Theme" uid="uid://byfkftjxut00j" path="res://resources/main_theme.tres" id="3_mgjks"]
-[ext_resource type="PackedScene" uid="uid://jn3bimaevemh" path="res://scenes/title_banner/title_bannertscn.tscn" id="4_pgrtf"]
+[ext_resource type="PackedScene" uid="uid://jn3bimaevemh" path="res://scenes/title_banner/title_banner.tscn" id="4_pgrtf"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_8s41y"]
 action = &"ui_accept"
@@ -18,6 +19,7 @@ action = &"ui_cancel"
 events = [SubResource("InputEventAction_l56dp")]
 
 [node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_jehc2")
 
 [node name="Background" parent="." instance=ExtResource("1_gkekp")]
 
@@ -88,3 +90,6 @@ size_flags_vertical = 6
 theme_type_variation = &"FlatButton"
 shortcut = SubResource("Shortcut_71d5r")
 text = "Quit Game"
+
+[connection signal="pressed" from="UILayer/Control/VBoxContainer/Panel2/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="UILayer/Control/VBoxContainer/Panel2/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

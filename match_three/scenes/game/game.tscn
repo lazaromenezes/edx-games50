@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd5176u64sphr"]
+
+[ext_resource type="PackedScene" uid="uid://bxjyeoijeky33" path="res://scenes/background/background.tscn" id="1_af1tn"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_mkc53"]
+[ext_resource type="Script" path="res://scenes/game/game_board.gd" id="3_prdv5"]
+[ext_resource type="Script" path="res://scenes/game/game_hud.gd" id="4_jsok3"]
+[ext_resource type="Theme" uid="uid://byfkftjxut00j" path="res://resources/main_theme.tres" id="4_v73n2"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_mkc53")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 90.0
+
+[node name="Background" parent="." instance=ExtResource("1_af1tn")]
+
+[node name="Board" type="CanvasLayer" parent="."]
+
+[node name="GameBoard" type="Node2D" parent="Board"]
+script = ExtResource("3_prdv5")
+
+[node name="GameHud" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+script = ExtResource("4_jsok3")
+
+[node name="Hud" type="PanelContainer" parent="GameHud"]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 216.0
+offset_bottom = 98.0
+theme = ExtResource("4_v73n2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHud/Hud"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Level" type="Label" parent="GameHud/Hud/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Level: %d"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="GameHud/Hud/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Score: %d"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Goal" type="Label" parent="GameHud/Hud/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Goal: %d"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="GameHud/Hud/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Time: %d:%d"
+horizontal_alignment = 1
+vertical_alignment = 1

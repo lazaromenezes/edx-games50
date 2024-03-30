@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://orqr45r18gtp"]
+
+[ext_resource type="Script" path="res://scenes/level_banner/level_banner.gd" id="1_jdjst"]
+[ext_resource type="Theme" uid="uid://byfkftjxut00j" path="res://resources/main_theme.tres" id="1_oey6y"]
+
+[node name="Banners" type="CanvasLayer"]
+layer = 3
+offset = Vector2(0, -75)
+transform = Transform2D(1, 0, 0, 1, 0, -75)
+script = ExtResource("1_jdjst")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 75)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.260417
+grow_horizontal = 2
+theme = ExtResource("1_oey6y")
+theme_type_variation = &"Banner"
+
+[node name="Label" type="Label" parent="PanelContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+text = "LEVEL 1"
+horizontal_alignment = 1
+vertical_alignment = 1

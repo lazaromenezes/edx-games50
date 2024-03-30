@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jn3bimaevemh"]
 
-[ext_resource type="Script" path="res://scenes/title_banner/title_bannertscn.gd" id="1_bk3hv"]
+[ext_resource type="Script" path="res://scenes/title_banner/title_banner.gd" id="1_bk3hv"]
 
 [node name="TitleBanner" type="Control"]
 layout_mode = 3
