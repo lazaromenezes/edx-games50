@@ -5,19 +5,17 @@ const SCORE: String = "SCORE: %d"
 const GOAL: String = "GOAL: %d"
 const TIME: String = "TIME: %02d:%02d"
 
-@export var initial_time: float = 90
-
 var _timer: Timer
 
 func reset(level: int, score: int, goal: int, timer: Timer):
 	%Level.text = LEVEL % level
-	%Score.text = SCORE % level
-	%Goal.text = GOAL % level
+	%Score.text = SCORE % score
+	%Goal.text = GOAL % goal
 	_timer = timer
 	_timer.start()
 	show()
 
-func _process(delta):
+func _process(_delta):
 	if visible:
 		%Time.text = _format_time()
 	

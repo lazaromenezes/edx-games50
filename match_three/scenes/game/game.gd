@@ -2,12 +2,15 @@ extends Node2D
 
 enum State {LEVEL_DISPLAY, PLAY}
 
+@export var initial_time: float = 90
+
 var _level: int = 0
 var _state: State
 
 var level_banner_scene = preload("res://scenes/level_banner/level_banner.tscn")
 
 func _ready() -> void:
+	$Timer.wait_time = initial_time
 	_next_level()
 
 func _next_level():
