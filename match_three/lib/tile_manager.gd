@@ -19,7 +19,7 @@ static func _load_tiles():
 	for r in ROWS:
 		for c in COLUMNS:
 			@warning_ignore("integer_division")
-			var color_id = r + c / TILE_SHAPES
+			var color_id = r * 2 + c / TILE_SHAPES
 			var shape_id = c % TILE_SHAPES
 			var texture: AtlasTexture = _build_texture(r, c)
 			
@@ -36,7 +36,13 @@ static func _build_texture(row: int, column: int):
 	
 	return texture
 	
-static func random_tile():
-	return tiles.pick_random()
+static func random_tile(level: int = 1):
+	var max_color = level
+	var max_shape = level - 1
+	
+	var filtered_tiles = tiles.filter(_filter_tile.bind(max_color, max_shape))
+	
+	return filtered_tiles.pick_random()
 
-
+static func _filter_tile(tile: Tile, max_color: int, max_shape: int):
+	return tile.shape_id <= max_shape and tile.color_id <= max(3, max_color)
