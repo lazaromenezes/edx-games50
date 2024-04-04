@@ -38,14 +38,5 @@ static func _build_texture(row: int, column: int):
 	
 static func random_tile():
 	return tiles.pick_random()
-	
-class Tile:
-	var color_id: int
-	var shape_id: int
-	var texture: AtlasTexture
-	
-	@warning_ignore("shadowed_variable")
-	func _init(color_id: int, shape_id: int, texture: AtlasTexture):
-		self.color_id = color_id
-		self.shape_id = shape_id
-		self.texture = texture
+
+
