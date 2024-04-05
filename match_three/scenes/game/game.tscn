@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd5176u64sphr"]
+[gd_scene load_steps=8 format=3 uid="uid://dd5176u64sphr"]
 
 [ext_resource type="PackedScene" uid="uid://bxjyeoijeky33" path="res://scenes/background/background.tscn" id="1_af1tn"]
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_mkc53"]
 [ext_resource type="Script" path="res://scenes/game/game_board.gd" id="3_prdv5"]
 [ext_resource type="Script" path="res://scenes/game/game_hud.gd" id="4_jsok3"]
 [ext_resource type="Theme" uid="uid://byfkftjxut00j" path="res://resources/main_theme.tres" id="4_v73n2"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_6sg6m"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_21tvo"]
+events = [SubResource("InputEventAction_6sg6m")]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_mkc53")
@@ -72,5 +78,38 @@ text = "Time: %d:%d"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameOver" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+
+[node name="Panel" type="PanelContainer" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_v73n2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/Panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="GameOver/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="GameOver/Panel/VBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_21tvo")
+text = "Main Menu"
+flat = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="board_ready" from="Board/GameBoard" to="." method="_on_game_board_board_ready"]
 [connection signal="scored" from="Board/GameBoard" to="." method="_on_game_board_scored"]
+[connection signal="pressed" from="GameOver/Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]

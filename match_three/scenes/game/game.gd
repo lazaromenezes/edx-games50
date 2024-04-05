@@ -1,6 +1,6 @@
 extends Node2D
 
-enum State {LEVEL_DISPLAY, PLAY, PREPARE}
+enum State {LEVEL_DISPLAY, PLAY, PREPARE, GAME_OVER}
 
 @export var initial_time: float = 60
 @export var level_inflence: float = 1.25
@@ -43,6 +43,7 @@ func _prepare():
 func _on_game_board_board_ready():
 	if _state == State.LEVEL_DISPLAY:
 		_state = State.PLAY
+		$Timer.paused = false
 		$Timer.start()
 	elif _state == State.PREPARE:
 		_next_level()
@@ -53,4 +54,25 @@ func _on_game_board_scored(points):
 		$GameHud.update_score(_score)
 		
 		if _score >= _goal:
+			$Timer.paused = true
 			_state = State.PREPARE
+
+func _on_timer_timeout():
+	$Board.process_mode = Node.PROCESS_MODE_DISABLED
+	$GameHud.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	_state = State.GAME_OVER
+	_show_game_over()
+
+func _show_game_over():
+	var panel = $GameOver/Panel
+	panel.modulate.a = 0
+	
+	$GameOver.show()
+	
+	var tween = create_tween()
+	tween.tween_property(panel, "modulate:a", 1, 0.5)
+	
+func _on_button_pressed():
+	if _state == State.GAME_OVER:
+		SceneManager.change_to(SceneManager.TITLE)
