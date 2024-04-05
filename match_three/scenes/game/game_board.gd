@@ -1,5 +1,7 @@
 extends Node2D
 
+signal board_ready()
+
 @export var board_size: Vector2 = Vector2(8, 8)
 @export var swap_time: float = 0.1
 @export var validate_adjacents: bool = true
@@ -9,8 +11,8 @@ var _viewport_halfed: Vector2
 
 var _current_selected: PlayTile = null
 var _tiles: Array[Array] = []
-
 var _valid_move: bool = true
+var _can_score: bool = false
 
 func _ready():
 	_viewport_halfed = get_viewport_rect().size / 2.0
@@ -19,7 +21,12 @@ func new_board(level: int):
 	_clear()
 	_add_tiles()
 	_centralize()
-	_move_right()
+	await _move_right()
+	_check_for_matches(_ready_to_play)
+
+func _ready_to_play():
+	_can_score = true
+	board_ready.emit()
 
 func _clear():
 	for tile in get_children():
@@ -52,6 +59,7 @@ func _centralize():
 func _move_right():
 	var tween = create_tween()
 	tween.tween_property(self, "position:x", _viewport_halfed.x , 0.1)
+	await tween.finished
 
 func _on_tile_selected(selected_tile):
 	if _current_selected == null:
@@ -62,7 +70,7 @@ func _on_tile_selected(selected_tile):
 	else:
 		if _are_adjacent(_current_selected, selected_tile):
 			await _swap(_current_selected, selected_tile)
-			call_deferred("_check_for_matches", _swap.bind(_current_selected, selected_tile))
+			_check_for_matches(_swap.bind(_current_selected, selected_tile))
 			_current_selected._selected = false
 			selected_tile._selected = false
 			_current_selected = null
@@ -111,10 +119,7 @@ func _check_for_matches(when_not_found: Callable):
 		when_not_found.call()
 	else:
 		_clear_matches(matches)
-		call_deferred("_adjust_board")
-		call_deferred("_refill")
-		#await get_tree().create_timer(0.1).timeout
-		#call_deferred("_check_for_matches", _to_play)
+		_adjust_board()
 
 func _find_matches():
 	var matches: Array[Match] = []
@@ -180,6 +185,9 @@ func _clear_matches(matches: Array):
 			tile.queue_free()
 
 func _adjust_board():
+	
+	var tween = get_tree().create_tween()
+	
 	for column in board_size.y:
 		var empty_slot = -1
 		var space = false
@@ -192,7 +200,9 @@ func _adjust_board():
 				if tile:
 					_tiles[empty_slot][column] = tile
 					
-					_move_tile(tile, Vector2(tile.position.x, TileManager.TILE_SIZE * empty_slot))
+					tween\
+					.parallel()\
+					.tween_property(tile, "position:y", TileManager.TILE_SIZE * empty_slot, 0.15)
 					
 					_tiles[row][column] = null
 					
@@ -206,13 +216,32 @@ func _adjust_board():
 			
 			row -= 1
 
+	tween.tween_callback(_refill)
+
+	await tween.finished
+
 func _refill():
+	var tween = get_tree().create_tween()
+	
 	for y in board_size.y:
 		for x in range(board_size.x - 1, -1, -1):
 			var tile = _tiles[x][y]
 			
 			if tile == null:
-				_replace_tile(x, y)
+				var play_tile = _new_tile(x, y)
+				_tiles[x][y] = play_tile
+				
+				var original_position = play_tile.position
+				play_tile.position.y = -50
+				add_child(play_tile)
+				
+				tween\
+				.parallel()\
+				.tween_property(play_tile, "position:y", original_position.y, 0.15)
+
+	tween.tween_callback(_check_for_matches.bind(_ready_to_play))
+
+	await tween.finished
 
 func _replace_tile(row, column):
 	var play_tile = _new_tile(row, column)
