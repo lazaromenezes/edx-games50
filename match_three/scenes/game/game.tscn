@@ -11,6 +11,7 @@ script = ExtResource("1_mkc53")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 90.0
+one_shot = true
 
 [node name="Background" parent="." instance=ExtResource("1_af1tn")]
 

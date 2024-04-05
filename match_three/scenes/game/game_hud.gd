@@ -8,11 +8,12 @@ const TIME: String = "TIME: %02d:%02d"
 var _timer: Timer
 
 func reset(level: int, score: int, goal: int, timer: Timer):
+	_timer = timer
+	
 	%Level.text = LEVEL % level
 	%Goal.text = GOAL % goal
+	
 	update_score(score)
-	_timer = timer
-	_timer.start()
 	show()
 
 func _process(_delta):

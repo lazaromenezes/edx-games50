@@ -37,12 +37,12 @@ static func _build_texture(row: int, column: int):
 	return texture
 	
 static func random_tile(level: int = 1):
-	var max_color = level
-	var max_shape = level - 1
+	var max_shape = level / TILE_SHAPES
+	var max_color = level + 2
 	
 	var filtered_tiles = tiles.filter(_filter_tile.bind(max_color, max_shape))
 	
 	return filtered_tiles.pick_random()
 
 static func _filter_tile(tile: Tile, max_color: int, max_shape: int):
-	return tile.shape_id <= max_shape and tile.color_id <= max(3, max_color)
+	return tile.shape_id <= max_shape and tile.color_id < max_color

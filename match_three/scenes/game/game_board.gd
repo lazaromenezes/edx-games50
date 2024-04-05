@@ -12,12 +12,16 @@ var _viewport_halfed: Vector2
 
 var _current_selected: PlayTile = null
 var _tiles: Array[Array] = []
-var _valid_move: bool = true
+var _can_move: bool = false
+var _level: int = 0
 
 func _ready():
 	_viewport_halfed = get_viewport_rect().size / 2.0
 
 func new_board(level: int):
+	_level = level
+	_current_selected = null
+	_tiles = []
 	_clear()
 	_add_tiles()
 	_centralize()
@@ -44,7 +48,7 @@ func _add_tile(row, column) -> void:
 
 func _new_tile(row, column):
 	var play_tile = _tile_scene.instantiate()
-	play_tile.tile = TileManager.random_tile()
+	play_tile.tile = TileManager.random_tile(_level)
 	play_tile.position = Vector2(column * TileManager.TILE_SIZE, row * TileManager.TILE_SIZE)
 	play_tile.selected.connect(_on_tile_selected)
 	return play_tile
@@ -61,6 +65,9 @@ func _move_right():
 	await tween.finished
 
 func _on_tile_selected(selected_tile):
+	if not _can_move:
+		return
+		
 	if _current_selected == null:
 		_current_selected = selected_tile
 	elif _current_selected == selected_tile:
@@ -113,12 +120,14 @@ func _are_adjacent(a: PlayTile, b: PlayTile):
 	return x_diff + y_diff == 1
 
 func _check_for_matches(when_not_found: Callable):
+	_can_move = false
 	var matches = _find_matches()
 	if matches.is_empty():
 		when_not_found.call()
 	else:
 		_clear_matches(matches)
 		_adjust_board()
+	_can_move = true
 
 func _find_matches():
 	var matches: Array[Match] = []
@@ -185,7 +194,6 @@ func _clear_matches(matches: Array):
 			tile.queue_free()
 
 func _adjust_board():
-	
 	var tween = get_tree().create_tween()
 	
 	for column in board_size.y:
