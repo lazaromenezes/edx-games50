@@ -9,8 +9,8 @@ var _timer: Timer
 
 func reset(level: int, score: int, goal: int, timer: Timer):
 	%Level.text = LEVEL % level
-	%Score.text = SCORE % score
 	%Goal.text = GOAL % goal
+	update_score(score)
 	_timer = timer
 	_timer.start()
 	show()
@@ -25,3 +25,6 @@ func _format_time():
 	var seconds = fmod(remaining_time, 60)
 	
 	return TIME % [minutes, seconds]
+
+func update_score(new_score):
+	%Score.text = SCORE % new_score

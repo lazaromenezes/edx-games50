@@ -70,3 +70,6 @@ theme_override_font_sizes/font_size = 8
 text = "Time: %d:%d"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="board_ready" from="Board/GameBoard" to="." method="_on_game_board_board_ready"]
+[connection signal="scored" from="Board/GameBoard" to="." method="_on_game_board_scored"]

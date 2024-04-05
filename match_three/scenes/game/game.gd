@@ -6,6 +6,7 @@ enum State {LEVEL_DISPLAY, PLAY}
 
 var _level: int = 0
 var _state: State
+var _score: int = 0
 
 var level_banner_scene = preload("res://scenes/level_banner/level_banner.tscn")
 
@@ -30,6 +31,13 @@ func _on_banner_displayed():
 	_prepare()
 
 func _prepare():
+	$GameHud.reset(_level, _score, 9000, $Timer)
 	$Board/GameBoard.new_board(_level)
-	$GameHud.reset(_level, 0, 9000, $Timer)
+	
+func _on_game_board_board_ready():
 	_state = State.PLAY
+
+func _on_game_board_scored(points):
+	if _state == State.PLAY:
+		_score += points
+		$GameHud.update_score(_score)

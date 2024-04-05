@@ -1,6 +1,7 @@
 extends Node2D
 
 signal board_ready()
+signal scored(points)
 
 @export var board_size: Vector2 = Vector2(8, 8)
 @export var swap_time: float = 0.1
@@ -12,7 +13,6 @@ var _viewport_halfed: Vector2
 var _current_selected: PlayTile = null
 var _tiles: Array[Array] = []
 var _valid_move: bool = true
-var _can_score: bool = false
 
 func _ready():
 	_viewport_halfed = get_viewport_rect().size / 2.0
@@ -25,7 +25,6 @@ func new_board(level: int):
 	_check_for_matches(_ready_to_play)
 
 func _ready_to_play():
-	_can_score = true
 	board_ready.emit()
 
 func _clear():
@@ -179,6 +178,7 @@ func _find_vertical_matches(matches: Array[Match]):
 
 func _clear_matches(matches: Array):
 	for tile_match in matches:
+		scored.emit(tile_match.points)
 		for tile in tile_match.tiles:
 			var tile_index = _find_indexes(tile)
 			_tiles[tile_index.y][tile_index.x] = null
