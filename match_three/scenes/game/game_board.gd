@@ -296,6 +296,10 @@ func _move_tile(tile: PlayTile, to: Vector2):
 func _is_shiny(play_tile: PlayTile) -> bool:
 	return play_tile.tile.shiny
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		SceneManager.change_to(SceneManager.TITLE)
+
 class Match:
 	const MIN_MATCH = 3
 	
