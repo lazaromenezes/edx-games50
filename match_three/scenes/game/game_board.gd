@@ -149,7 +149,14 @@ func _find_horizontal_matches(matches: Array[Match]):
 			
 			if not play_tile.tile.is_equal(reference_tile):
 				if match_count >= 3:
-					matches.push_back(Match.new(matching_pile))
+					if matching_pile.any(_is_shiny):
+						var row_pile = []
+						for c in board_size.y:
+							row_pile.push_back(_tiles[row][c])
+						matches.push_back(Match.new(row_pile))
+						break
+					else:
+						matches.push_back(Match.new(matching_pile))
 					
 				reference_tile = play_tile.tile
 				match_count = 1
@@ -157,8 +164,13 @@ func _find_horizontal_matches(matches: Array[Match]):
 			else:
 				matching_pile.push_back(play_tile)
 				match_count += 1
-				
 		if match_count >= 3:
+			if matching_pile.any(_is_shiny):
+				var row_pile = []
+				for c in board_size.y:
+					row_pile.push_back(_tiles[row][c])
+				matches.push_back(Match.new(row_pile))
+			else:
 				matches.push_back(Match.new(matching_pile))
 
 func _find_vertical_matches(matches: Array[Match]):
@@ -173,7 +185,14 @@ func _find_vertical_matches(matches: Array[Match]):
 			
 			if not play_tile.tile.is_equal(reference_tile):
 				if match_count >= 3:
-					matches.push_back(Match.new(matching_pile))
+					if matching_pile.any(_is_shiny):
+						var column_pile = []
+						for r in board_size.x:
+							column_pile.push_back(_tiles[r][row])
+						matches.push_back(Match.new(column_pile))
+						break
+					else:
+						matches.push_back(Match.new(matching_pile))
 					
 				reference_tile = play_tile.tile
 				match_count = 1
@@ -183,6 +202,12 @@ func _find_vertical_matches(matches: Array[Match]):
 				match_count += 1
 				
 		if match_count >= 3:
+			if matching_pile.any(_is_shiny):
+				var column_pile = []
+				for r in board_size.x:
+					column_pile.push_back(_tiles[r][row])
+				matches.push_back(Match.new(column_pile))
+			else:
 				matches.push_back(Match.new(matching_pile))
 
 func _clear_matches(matches: Array):
@@ -263,6 +288,9 @@ func _replace_tile(row, column):
 func _move_tile(tile: PlayTile, to: Vector2):
 	var tween = get_tree().create_tween()
 	tween.tween_property(tile, "position", to, 0.15)
+
+func _is_shiny(play_tile: PlayTile) -> bool:
+	return play_tile.tile.shiny
 
 class Match:
 	const MIN_MATCH = 3

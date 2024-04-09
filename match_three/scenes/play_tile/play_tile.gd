@@ -14,6 +14,7 @@ var tile: Tile:
 	set(value): 
 		tile = value
 		$Sprite.texture = tile.texture
+		$Sprite.material.set_shader_parameter("Shiny", value.shiny)
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("select_tile"):

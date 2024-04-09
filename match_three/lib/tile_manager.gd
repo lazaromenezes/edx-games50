@@ -26,7 +26,7 @@ static func _load_tiles():
 			loaded_tiles.push_back(Tile.new(color_id, shape_id, texture))
 	
 	return loaded_tiles
-
+	
 static func _build_texture(row: int, column: int):
 	var region = Rect2(column * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE)
 	
@@ -37,12 +37,15 @@ static func _build_texture(row: int, column: int):
 	return texture
 	
 static func random_tile(level: int = 1):
+	@warning_ignore("integer_division")
 	var max_shape = level / TILE_SHAPES
 	var max_color = level + 2
 	
 	var filtered_tiles = tiles.filter(_filter_tile.bind(max_color, max_shape))
 	
-	return filtered_tiles.pick_random()
+	var tile: Tile = Tile.from(filtered_tiles.pick_random())
+	tile.shiny = randi() % 100 < 5
+	return tile
 
 static func _filter_tile(tile: Tile, max_color: int, max_shape: int):
 	return tile.shape_id <= max_shape and tile.color_id < max_color

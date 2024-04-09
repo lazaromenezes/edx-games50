@@ -1,72 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsmr2syeu4era"]
+[gd_scene load_steps=9 format=3 uid="uid://dsmr2syeu4era"]
 
 [ext_resource type="Script" path="res://scenes/play_tile/play_tile.gd" id="1_6cf1f"]
-
-[sub_resource type="Shader" id="Shader_01xxw"]
-code = "shader_type canvas_item;
-
-uniform bool Hovered = false;
-uniform bool Selected = false;
-uniform sampler2D Texture2DParameter;
-
-vec4 overlay(vec4 base, vec4 blend){
-	vec4 limit = step(0.5, base);
-
-	return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
-}
-
-vec4  border(vec2 uv, float border_width)
-{
-	uv = uv * 2.0 - 1.0;
-
-	vec2 abs_uv = abs(uv.xy);
-	float dist = max(abs_uv.x, abs_uv.y);
-	vec3 stroke = 1.0 - vec3( step(32.0, dist) - step(32.0 + border_width, dist) );
-	return vec4(vec3(stroke), 1.0);
-}
-
-void fragment() {
-	vec4 current = texture(TEXTURE, UV);
-	vec4 highlight = texture(Texture2DParameter, UV);
-
-	if((Hovered && !Selected) || Selected){
-		COLOR = overlay(current, highlight);
-	}
-}
-
-"
-
-[sub_resource type="Gradient" id="Gradient_hxwul"]
-offsets = PackedFloat32Array(0.799458, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.581033, 0.581033, 0.581033, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jdfrs"]
-gradient = SubResource("Gradient_hxwul")
-width = 32
-height = 32
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tyw3t"]
-resource_local_to_scene = true
-shader = SubResource("Shader_01xxw")
-shader_parameter/Hovered = false
-shader_parameter/Selected = false
-shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_jdfrs")
+[ext_resource type="Shader" path="res://scenes/play_tile/play_tile.gdshader" id="2_bmx01"]
+[ext_resource type="Texture2D" uid="uid://0blqs0k37gxh" path="res://assets/match3.png" id="3_d4te6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uwqc"]
 size = Vector2(32, 32)
 
+[sub_resource type="Gradient" id="Gradient_515sm"]
+offsets = PackedFloat32Array(0.190104, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2bgj3"]
+gradient = SubResource("Gradient_515sm")
+width = 32
+height = 32
+fill = 2
+fill_from = Vector2(0.303419, 0.589744)
+fill_to = Vector2(0.803419, 0.910256)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tyw3t"]
+resource_local_to_scene = true
+shader = ExtResource("2_bmx01")
+shader_parameter/Hovered = false
+shader_parameter/Selected = false
+shader_parameter/Shiny = false
+shader_parameter/ShineSpeed = 10.0
+shader_parameter/ShineAmount = 0.2
+shader_parameter/HighlightTexture = SubResource("GradientTexture2D_2bgj3")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b1u4"]
+atlas = ExtResource("3_d4te6")
+region = Rect2(256, 64, 32, 32)
+
 [node name="PlayTile" type="Area2D"]
 script = ExtResource("1_6cf1f")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_4uwqc")
+
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tyw3t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_4uwqc")
+texture = SubResource("AtlasTexture_8b1u4")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
