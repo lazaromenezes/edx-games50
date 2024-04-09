@@ -3,13 +3,15 @@ extends Node2D
 signal board_ready()
 signal scored(points)
 
+const PLAY_SWAP_TIME: float = 0.1
+const GAME_SWAP_TIME: float = 0.001
+
 @export var board_size: Vector2 = Vector2(8, 8)
-@export var swap_time: float = 0.1
 @export var validate_adjacents: bool = true
 
+var _swap_time: float = GAME_SWAP_TIME
 var _tile_scene: PackedScene = preload("res://scenes/play_tile/play_tile.tscn")
 var _viewport_halfed: Vector2
-
 var _current_selected: PlayTile = null
 var _tiles: Array[Array] = []
 var _can_move: bool = false
@@ -19,6 +21,7 @@ func _ready():
 	_viewport_halfed = get_viewport_rect().size / 2.0
 
 func new_board(level: int):
+	_swap_time = GAME_SWAP_TIME
 	_level = level
 	_current_selected = null
 	_tiles = []
@@ -30,6 +33,7 @@ func new_board(level: int):
 
 func _ready_to_play():
 	board_ready.emit()
+	_swap_time = PLAY_SWAP_TIME
 
 func _clear():
 	for tile in get_children():
@@ -103,8 +107,8 @@ func _swap_positions(a: PlayTile, b: PlayTile):
 	var b_position = b.position
 	
 	var tween = create_tween()
-	tween.tween_property(a, "position", b_position, swap_time)
-	tween.parallel().tween_property(b, "position", a_position, swap_time)
+	tween.tween_property(a, "position", b_position, _swap_time)
+	tween.parallel().tween_property(b, "position", a_position, _swap_time)
 	await tween.finished
 
 func _are_adjacent(a: PlayTile, b: PlayTile):
@@ -235,7 +239,7 @@ func _adjust_board():
 					
 					tween\
 					.parallel()\
-					.tween_property(tile, "position:y", TileManager.TILE_SIZE * empty_slot, 0.15)
+					.tween_property(tile, "position:y", TileManager.TILE_SIZE * empty_slot, PLAY_SWAP_TIME)
 					
 					_tiles[row][column] = null
 					
@@ -270,7 +274,7 @@ func _refill():
 				
 				tween\
 				.parallel()\
-				.tween_property(play_tile, "position:y", original_position.y, 0.15)
+				.tween_property(play_tile, "position:y", original_position.y, PLAY_SWAP_TIME)
 
 	tween.tween_callback(_check_for_matches.bind(_ready_to_play))
 
