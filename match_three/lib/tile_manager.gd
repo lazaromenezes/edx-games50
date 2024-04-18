@@ -44,7 +44,7 @@ static func random_tile(level: int = 1):
 	var filtered_tiles = tiles.filter(_filter_tile.bind(max_color, max_shape))
 	
 	var tile: Tile = Tile.from(filtered_tiles.pick_random())
-	tile.shiny = randi() % 100 < 5
+	tile.shiny = randi() % 100 == 0
 	return tile
 
 static func _filter_tile(tile: Tile, max_color: int, max_shape: int):
