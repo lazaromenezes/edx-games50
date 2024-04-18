@@ -15,8 +15,20 @@ var _goal: int = 0
 
 var level_banner_scene = preload("res://scenes/level_banner/level_banner.tscn")
 
+var _ticked: bool = true
+
 func _ready() -> void:
 	_next_level()
+
+func _process(delta):
+	if $Timer.time_left <= 5 and $Timer.time_left > 0:
+		if _ticked:
+			get_tree().create_timer(1).timeout.connect(_on_tick)
+		_ticked = false
+
+func _on_tick():
+	GameEvents.clock_tick.emit()
+	_ticked = true
 
 func _next_level():
 	_state = State.LEVEL_DISPLAY
