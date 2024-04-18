@@ -22,14 +22,14 @@ void fragment() {
 	if((Hovered && !Selected) || Selected){
 		current = overlay(current, highlight);
 	}
-	
+
 	if(Shiny){
 		vec4 shineColor = current.rgba * (1.0 + ShineAmount);
 		float cycle = sin(TIME * ShineSpeed);
 		float pulse = cycle >= 0.0 ? abs(cycle) : 0.0;
 		current.rgb = mix(current.rgb, shineColor.rgb, pulse * shineColor.a);
 	}
-	
+
 	COLOR = current;
 }
 

@@ -2,12 +2,17 @@ extends Node2D
 
 signal board_ready()
 signal scored(points)
+signal matches_exhausted()
 
 const PLAY_SWAP_TIME: float = 0.1
 const GAME_SWAP_TIME: float = 0.001
 
 @export var board_size: Vector2 = Vector2(8, 8)
 @export var validate_adjacents: bool = true
+
+enum State {CREATE, PLAY}
+
+var _current_state: State
 
 var _swap_time: float = GAME_SWAP_TIME
 var _tile_scene: PackedScene = preload("res://scenes/play_tile/play_tile.tscn")
@@ -21,6 +26,7 @@ func _ready():
 	_viewport_halfed = get_viewport_rect().size / 2.0
 
 func new_board(level: int):
+	_current_state = State.CREATE
 	_swap_time = GAME_SWAP_TIME
 	_level = level
 	_current_selected = null
@@ -32,8 +38,15 @@ func new_board(level: int):
 	_check_for_matches(_ready_to_play)
 
 func _ready_to_play():
-	board_ready.emit()
-	_swap_time = PLAY_SWAP_TIME
+	if _has_possible_matches():
+		board_ready.emit()
+		_current_state = State.PLAY
+		_swap_time = PLAY_SWAP_TIME
+	else:
+		if _current_state == State.PLAY:
+			matches_exhausted.emit()
+		else:
+			new_board(_level)
 
 func _clear():
 	for tile in get_children():
@@ -91,6 +104,29 @@ func _swap(a: PlayTile, b: PlayTile):
 	await _swap_positions(a, b)
 	_swap_indexes(a, b)
 
+func _has_possible_matches():
+	for r in range(7, 0, -1):
+		for c in range(7, 0, -1):
+			_swap_indexes(_tiles[r][c], _tiles[r][c - 1])
+			var has_matches = not _find_matches().is_empty()
+			_swap_indexes(_tiles[r][c], _tiles[r][c - 1])
+
+			if has_matches:
+				if OS.is_debug_build():
+					print("Is possible: [%s, %s] - [%s, %s]" % [r+1, c+1, r+1, c])
+				return true
+
+			_swap_indexes(_tiles[r][c], _tiles[r - 1][c])
+			has_matches = not _find_matches().is_empty()
+			_swap_indexes(_tiles[r][c], _tiles[r - 1][c])
+			
+			if has_matches:
+				if OS.is_debug_build():
+					print("Is possible: [%s, %s] - [%s, %s]" % [r+1, c+1, r, c+1])
+				return true
+
+	return false
+
 func _swap_indexes(a: PlayTile, b: PlayTile) -> void:
 	var index_a = _find_indexes(a)
 	var index_b = _find_indexes(b)
@@ -133,7 +169,7 @@ func _check_for_matches(when_not_found: Callable):
 		_adjust_board()
 	_can_move = true
 
-func _find_matches():
+func _find_matches() -> Array[Match]:
 	var matches: Array[Match] = []
 	
 	_find_horizontal_matches(matches)

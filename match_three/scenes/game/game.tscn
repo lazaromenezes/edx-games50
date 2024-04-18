@@ -111,5 +111,6 @@ flat = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="board_ready" from="Board/GameBoard" to="." method="_on_game_board_board_ready"]
+[connection signal="matches_exhausted" from="Board/GameBoard" to="." method="_on_game_board_matches_exhausted"]
 [connection signal="scored" from="Board/GameBoard" to="." method="_on_game_board_scored"]
 [connection signal="pressed" from="GameOver/Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]

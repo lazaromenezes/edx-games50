@@ -58,13 +58,14 @@ func _on_game_board_scored(points):
 			_state = State.PREPARE
 
 func _on_timer_timeout():
+	_show_game_over()
+
+func _show_game_over():
 	$Board.process_mode = Node.PROCESS_MODE_DISABLED
 	$GameHud.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	_state = State.GAME_OVER
-	_show_game_over()
-
-func _show_game_over():
+	
 	var panel = $GameOver/Panel
 	panel.modulate.a = 0
 	
@@ -76,3 +77,8 @@ func _show_game_over():
 func _on_button_pressed():
 	if _state == State.GAME_OVER:
 		SceneManager.change_to(SceneManager.TITLE)
+
+func _on_game_board_matches_exhausted():
+	$Timer.stop()
+	_show_game_over()
+	
