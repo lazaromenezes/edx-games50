@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://fn5spu6prfnt"]
+
+[ext_resource type="AudioStream" uid="uid://bo14aeewd3ee5" path="res://assets/music3.mp3" id="1_ie2rx"]
+[ext_resource type="Script" path="res://autoload/audio/audio_player.gd" id="1_jnc76"]
+[ext_resource type="AudioStream" uid="uid://lhjdnt8qjjad" path="res://assets/game-over.wav" id="2_0pk5g"]
+[ext_resource type="AudioStream" uid="uid://0syuppd27ewp" path="res://assets/select.wav" id="3_l6ywc"]
+[ext_resource type="AudioStream" uid="uid://c64xifk6eowag" path="res://assets/match.wav" id="4_afhje"]
+[ext_resource type="AudioStream" uid="uid://d2d2plamhvc21" path="res://assets/next-level.wav" id="5_5hb2g"]
+[ext_resource type="AudioStream" uid="uid://b14luegd2myhk" path="res://assets/error.wav" id="6_bloc7"]
+[ext_resource type="AudioStream" uid="uid://ck24rev40bag1" path="res://assets/clock.wav" id="7_wpcxu"]
+
+[node name="AudioPlayer" type="Node"]
+script = ExtResource("1_jnc76")
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("1_ie2rx")
+autoplay = true
+bus = &"Music"
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="GameOver" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("2_0pk5g")
+bus = &"Sfx"
+
+[node name="Select" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("3_l6ywc")
+bus = &"Sfx"
+
+[node name="Match" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("4_afhje")
+bus = &"Sfx"
+
+[node name="NewLevel" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("5_5hb2g")
+bus = &"Sfx"
+
+[node name="Error" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("6_bloc7")
+bus = &"Sfx"
+
+[node name="Clock" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("7_wpcxu")
+bus = &"Sfx"

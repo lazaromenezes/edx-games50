@@ -18,6 +18,7 @@ var tile: Tile:
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("select_tile"):
+		GameEvents.item_selected.emit()
 		_selected = true
 
 func _on_mouse_entered():

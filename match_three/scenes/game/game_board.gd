@@ -99,6 +99,7 @@ func _on_tile_selected(selected_tile):
 			_current_selected = null
 		else:
 			selected_tile._selected = false
+			GameEvents.tile_error.emit()
 
 func _swap(a: PlayTile, b: PlayTile):
 	await _swap_positions(a, b)
@@ -165,6 +166,7 @@ func _check_for_matches(when_not_found: Callable):
 	if matches.is_empty():
 		when_not_found.call()
 	else:
+		GameEvents.tile_match.emit()
 		_clear_matches(matches)
 		_adjust_board()
 	_can_move = true

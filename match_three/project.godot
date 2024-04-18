@@ -18,7 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneManager="*res://lib/scene_manager.gd"
+SceneManager="*res://autoload/scene_manager/scene_manager.gd"
+AudioPlayer="*res://autoload/audio/audio_player.tscn"
+GameEvents="*res://autoload/events/game_events.gd"
 
 [display]
 

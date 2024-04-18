@@ -23,8 +23,8 @@ func _next_level():
 	_level += 1
 	_goal = floori(_goal * goal_influence + _level * level_inflence * goal_constant_increase)
 	$Timer.wait_time = initial_time + _level * level_inflence * time_constant_increase
-	
 	$GameHud.hide()
+	GameEvents.new_level.emit()
 	_show_banner()
 
 func _show_banner():
@@ -61,6 +61,7 @@ func _on_timer_timeout():
 	_show_game_over()
 
 func _show_game_over():
+	GameEvents.game_over.emit()
 	$Board.process_mode = Node.PROCESS_MODE_DISABLED
 	$GameHud.process_mode = Node.PROCESS_MODE_DISABLED
 	
